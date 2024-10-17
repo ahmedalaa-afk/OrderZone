@@ -35,13 +35,14 @@ class SendAcceptVendorNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Welcome to OrderZone!')
+            ->subject('Your OrderZone Application Has Been Approved!')
             ->greeting('Hello ' . $notifiable->name . ',')
-            ->line('We are excited to inform you that your application to join our OrderZone e-commerce platform has been approved!')
-            ->line('You can now start selling your products and reach a wide range of customers.')
-            ->action('Visit Your Vendor Dashboard', url('/vendor'))
-            ->line('Thank you for choosing OrderZone. We look forward to your success with us!');
+            ->line('Congratulations! We are pleased to inform you that your application to join the OrderZone e-commerce platform has been approved.')
+            ->line('However, please note that you will not be able to log in to your account just yet.')
+            ->line('We will be sending you the date and URL for a meeting to discuss your vendor data and complete the onboarding process.')
+            ->line('Thank you for choosing OrderZone. We look forward to helping you get started!');
     }
+
 
 
     /**
