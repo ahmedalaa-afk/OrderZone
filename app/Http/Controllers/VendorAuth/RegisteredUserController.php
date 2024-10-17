@@ -40,8 +40,6 @@ class RegisteredUserController extends Controller
         // Broadcast event
         NewVendorRegisteredEvent::dispatch();
 
-        // Auth::login($user);
-
         return to_route('vendor.request');
     }
 }

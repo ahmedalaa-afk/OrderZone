@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use MacsiDigital\Zoom\Facades\Zoom;
 
@@ -53,12 +54,18 @@ class NotificationsShow extends Component
     public function rejectVendor()
     {
         $vendor = Vendor::where('email', $this->notification->data['email'])->first();
+        dd(Storage::exists('app/public/vendors/' . $vendor->id));
 
+        if (Storage::exists(public_path('vendors/' . $vendor->id))){
+            dd('exist');
+            // $vendor->delete();
+        }
         if ($vendor) {
             $this->reset('notification');
 
             // send email notification to vendor
             Notification::sendNow($vendor, new SendRejectVendorNotification());
+            // delete vendor
             $this->dispatch('showNotificationModal');
             $this->dispatch('refreshNotifications')->to(NotificationData::class);
             // run event to update notification number

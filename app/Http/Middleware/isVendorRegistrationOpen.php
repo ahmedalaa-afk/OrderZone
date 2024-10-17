@@ -18,14 +18,13 @@ class isVendorRegistrationOpen
     {
         $currentDate = now();
 
-        $registrationPeriod = VendorRegistrationApplicationDate::where('end_at', '<=', $currentDate)
-            ->orderBy('end_at', 'desc')
-            ->first();
-
+        $registrationPeriod = VendorRegistrationApplicationDate::find(1);
         if ($registrationPeriod) {
-            return $next($request);
-        } else {
-            return to_route('vendor.login')->with('flash','Vendor registration is currently closed.');
+            if ($registrationPeriod->end_at <= $currentDate) {
+                return to_route('vendor.login')->with('flash', 'Vendor registration is currently closed.');
+            } else {
+                return $next($request);
+            }
         }
     }
 }

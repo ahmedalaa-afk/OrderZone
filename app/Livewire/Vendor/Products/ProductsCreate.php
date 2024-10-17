@@ -49,7 +49,7 @@ class ProductsCreate extends Component
             // attach category to pivot table with product
             $product->categories()->attach($data['category']);
             // Photo Upload
-            $path = 'products/images/' . str_replace(' ', '', $this->title) . '/';
+            $path = 'vendors/products/images/' . str_replace(' ', '', $this->title) . '/';
             foreach ($data['photos'] as $photo) {
                 $extension_file = $photo->getClientOriginalExtension();
                 $file_name = uuid_create() . '.' . $extension_file;
