@@ -6,6 +6,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Middleware\CheckAdmin;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\isVendorRegistrationOpen;
 use App\Http\Middleware\Vendor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -71,6 +72,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => Admin::class,
         'vendor' => Vendor::class,
+        'isVendorRegistrationOpen' => isVendorRegistrationOpen::class,
         'check_permission' => CheckPermission::class,
         'check_role' => CheckRole::class,
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

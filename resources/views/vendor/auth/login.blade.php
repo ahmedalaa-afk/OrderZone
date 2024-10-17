@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default"
-    data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+    data-template="vertical-menu-template-free">
 @include('vendor.partials.authHead')
 
 <body>
@@ -18,8 +18,7 @@
                         <!-- Session Status -->
                         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                        <form id="formAuthentication" class="mb-3" action="{{ route('vendor.login') }}"
-                            method="POST">
+                        <form id="formAuthentication" class="mb-3" action="{{ route('vendor.login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -58,6 +57,12 @@
                                 <span>Create an account</span>
                             </a>
                         </p>
+                        @if (session('flash'))
+                        <div class="alert alert-danger">
+                            {{ session('flash') }}
+                        </div>
+                        @endif
+
                     </div>
                 </div>
                 <!-- /Register -->

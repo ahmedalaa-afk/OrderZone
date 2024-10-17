@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
 
     public function __construct()
     {
-        $this->middleware([]);
+        $this->middleware(['isVendorRegistrationOpen']);
     }
     /**
      * Display the registration view.
