@@ -17,6 +17,11 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware([]);
+    }
     /**
      * Display the registration view.
      */
@@ -32,28 +37,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . Vendor::class],
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        //     'phone' => ['nullable', 'string', 'max:255'],
-        //     'id_card_front_photo' => ['required', 'mime:jpg,png,jpeg'],
-        //     'id_card_back_photo' => ['required', 'mime:jpg,png,jpeg'],
-        //     'country' => ['required', 'string', 'max:255'],
-        // ]);
-
-        // $user = Vendor::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        //     'phone' => $request->phone,
-        //     'id_card_front_photo',
-        //     'id_card_back_photo',
-        //     'country',
-        // ]);
-
-        // event(new Registered($user));
-
         // Broadcast event
         NewVendorRegisteredEvent::dispatch();
 
