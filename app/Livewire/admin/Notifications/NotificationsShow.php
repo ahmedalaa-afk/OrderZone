@@ -56,11 +56,11 @@ class NotificationsShow extends Component
     {
         $vendor = Vendor::where('email', $this->notification->data['email'])->first();
 
-        if (Storage::disk('public')->exists('vendors/' . str_replace(' ', '', $vendor->name))) {
-            Storage::disk('public')->deleteDirectory('vendors/' . str_replace(' ', '', $vendor->name));
-            $vendor->delete();
-        }        
         if ($vendor) {
+            if (Storage::disk('public')->exists('vendors/' . str_replace(' ', '', $vendor->name))) {
+                Storage::disk('public')->deleteDirectory('vendors/' . str_replace(' ', '', $vendor->name));
+                $vendor->delete();
+            }
             $this->reset('notification');
 
             // send email notification to vendor
