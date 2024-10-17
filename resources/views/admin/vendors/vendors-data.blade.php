@@ -11,6 +11,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Status</th>
+                    <th>Make Meeting</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -32,16 +33,20 @@
                         </a>
                     </td>
                     <td>
+                        <a class="btn btn-primary" href="#"
+                            wire:click.prevent="$dispatch('meetVendor', { id: {{ $vendor->id }} })"><i
+                                class='bx bxl-zoom'></i>
+                            Meet</a>
+                    </td>
+                    <td>
                         @role('vendor_manager','admin')
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#"><i class='bx bxl-zoom'></i>
-                                    Meeting</a>
                                 <a class="dropdown-item" href="#"
-                                    wire:click.prevent="$dispatch('deleteUser', { id: {{ $vendor->id }} })"><i
+                                    wire:click.prevent="$dispatch('deleteVendor', { id: {{ $vendor->id }} })"><i
                                         class="bx bx-trash me-1"></i>
                                     Delete</a>
                             </div>

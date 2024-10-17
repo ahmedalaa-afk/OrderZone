@@ -10,7 +10,7 @@ class VendorsData extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['refreshVendors' => '$refresh', 'vendorStatus'];
+    protected $listeners = ['refreshVendors' => '$refresh', 'vendorStatus','deleteVendor'];
 
     public $search;
     public $vendor;
@@ -30,6 +30,10 @@ class VendorsData extends Component
             $this->vendor->status = 'not_approved';
             $this->vendor->save();
         }
+    }
+    public function deleteVendor($id){
+        Vendor::where('id', $id)->delete();
+        $this->dispatch('refreshVendors');
     }
     public function render()
     {

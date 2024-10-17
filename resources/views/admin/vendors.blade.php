@@ -9,7 +9,7 @@
     <div class="card-body">
         @livewire('admin.vendors.vendors-data')
     </div>
-    {{-- @livewire('admin.vendors.vendors-delete') --}}
+    @livewire('admin.vendors.vendors-meeting')
 </div>
 <!-- / Content -->
 @endsection

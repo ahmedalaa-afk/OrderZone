@@ -20,15 +20,16 @@ class WomenProducts extends Component
             $query->whereIn('name', $this->categories->pluck('name')->toArray());
         })->get();
     }
-    public function filterProducts($key)
-    {
+    public function filterProducts($key){
         $this->key = $key;
-        $this->products = Product::whereHas('categories', function ($query) use ($key) {
-            $query->where('name', $key);
-        })->get();
+    }
+    public function updatedKey(){
+        $this->products = $this->getWomenProducts($this->key);
     }
     public function render()
     {
-        return view('user.products.women-products', ['products' => $this->products, 'categories' => $this->categories]);
+        return view('user.products.women-products', [
+            'products' => $this->products
+        , 'categories' => $this->categories]);
     }
 }

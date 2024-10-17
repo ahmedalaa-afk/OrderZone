@@ -66,6 +66,11 @@
             $('#showModal').modal('toggle');
         });
     });
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('showMeetingModal', (event) => {
+            $('#showModal').modal('toggle');
+        });
+    });
 </script>
 
 @livewireScripts

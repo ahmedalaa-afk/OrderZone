@@ -14,7 +14,7 @@ class NotificationData extends Component
 
     public function render()
     {
-        $notifications = Auth::guard('admin')->user()->unReadNotifications()->paginate(10);
+        $notifications = Auth::guard('admin')->user()->notifications()->paginate(10);
         return view('admin.notifications.notification-data', ['notifications' => $notifications]);
     }
 }

@@ -14,10 +14,10 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        // Role::create([
-        //     'name' => 'user_manager',
-        //     'guard_name' => 'admin',
-        // ]);
+        Role::create([
+            'name' => 'vendor',
+            'guard_name' => 'vendor',
+        ]);
 
         // $vendors = Vendor::all();
         // foreach ($vendors as $vendor){

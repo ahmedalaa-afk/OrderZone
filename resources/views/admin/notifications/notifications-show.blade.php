@@ -28,7 +28,7 @@
                 Accept
             </a>
 
-            <a class="btn btn-primary" href="#" wire:click.prevent="$dispatch('rejectVendor'})">
+            <a class="btn btn-primary" href="#" wire:click.prevent="$dispatch('rejectVendor')">
                 Reject
             </a>
         </div>
