@@ -12,6 +12,7 @@ use App\Notifications\SendVendorMeetingDate;
 use Carbon\Carbon;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -54,12 +55,11 @@ class NotificationsShow extends Component
     public function rejectVendor()
     {
         $vendor = Vendor::where('email', $this->notification->data['email'])->first();
-        dd(Storage::exists('app/public/vendors/' . $vendor->id));
 
-        if (Storage::exists(public_path('vendors/' . $vendor->id))){
-            dd('exist');
-            // $vendor->delete();
-        }
+        if (Storage::disk('public')->exists('vendors/' . str_replace(' ', '', $vendor->name))) {
+            Storage::disk('public')->deleteDirectory('vendors/' . str_replace(' ', '', $vendor->name));
+            $vendor->delete();
+        }        
         if ($vendor) {
             $this->reset('notification');
 

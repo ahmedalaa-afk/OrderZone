@@ -44,7 +44,7 @@ class Register extends Component
     {
         $data = $this->validate($this->roles());
         if ($data) {
-            $path = 'vendors/images/' . str_replace(' ', '', $this->name) . '/';
+            $path = 'vendors/' . str_replace(' ', '', $this->name) . '/' .'images/' ;
             // Front Identity
             $extension_file_front = $this->identity_front->getClientOriginalExtension();
             $file_front_name = uuid_create() . '.' . $extension_file_front;
