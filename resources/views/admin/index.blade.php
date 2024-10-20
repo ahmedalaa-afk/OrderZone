@@ -1,13 +1,10 @@
 @extends('admin.layouts.master')
 @section('home-active', 'active')
 @section('content')
-    <!-- Content -->
+<!-- Content -->
 
-    <div class="col-xl-6">
-        <!-- HTML5 Inputs -->
-        <div class="card mb-4">
-            <h5 class="card-header">Dashboard</h5>
-        </div>
-    </div>
-    <!-- / Content -->
+@role('vendor_manager','admin')
+@livewire('admin.vendors.vendors-registration-date')
+@endrole
+<!-- / Content -->
 @endsection
