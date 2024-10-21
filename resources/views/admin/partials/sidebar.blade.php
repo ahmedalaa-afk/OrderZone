@@ -60,6 +60,20 @@
             </a>
         </li>
         @endrole
+        @role('vendor_manager','admin')
+        <li class="menu-item mt-3 @yield('announces-active')">
+            <a href="{{ route('admin.announcements') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
+                <div data-i18n="Analytics" class="notification" id="notification-item">
+                    Announcements <span id="notification-counter" class="text-danger">
+                        @if (count(Auth::guard('admin')->user()->unreadNotifications) > 0)
+                        +{{count(Auth::guard('admin')->user()->unreadNotifications)}}
+                        @endif
+                    </span>
+                </div>
+            </a>
+        </li>
+        @endrole
         {{-- Product Manage --}}
         @role('product_manager', 'admin')
         <li class="menu-item mt-3 @yield('products-active')">
