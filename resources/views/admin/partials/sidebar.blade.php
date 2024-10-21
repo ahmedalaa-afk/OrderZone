@@ -51,7 +51,7 @@
             <a href="{{ route('admin.notifications') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
                 <div data-i18n="Analytics" class="notification" id="notification-item">
-                    Vendor Requests <span id="notification-counter" class="text-danger">
+                    Registration Requests <span id="notification-counter" class="text-danger">
                         @if (count(Auth::guard('admin')->user()->unreadNotifications) > 0)
                         +{{count(Auth::guard('admin')->user()->unreadNotifications)}}
                         @endif
