@@ -20,7 +20,7 @@ Route::prefix('vendor')->controller(VendorController::class)->name('vendor.')->g
         Route::resource('/',ProductController::class);
     });
     // notifications Section
-    Route::get('/notifications','notifications')->name('notifications');
+    Route::get('/announcements','announcements')->name('announcements');
     // Authentication Routes
     require __DIR__ . '/vendorAuth.php';
 });

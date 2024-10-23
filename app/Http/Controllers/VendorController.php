@@ -22,7 +22,7 @@ class VendorController extends Controller
     {
         return view('vendor.request');
     }
-    public function notifications()
+    public function announcements()
     {
         return view('vendor.notifications');
     }
