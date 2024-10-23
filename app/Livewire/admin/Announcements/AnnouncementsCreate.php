@@ -3,7 +3,10 @@
 namespace App\Livewire\Admin\Announcements;
 
 use App\Models\Announcement;
+use App\Models\Vendor;
+use App\Notifications\NewAnnouncementToVendorNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class AnnouncementsCreate extends Component
@@ -17,12 +20,15 @@ class AnnouncementsCreate extends Component
     }
     public function submit(){
         $this->validate();
-        Announcement::create([
+        $announcement = Announcement::create([
             'title' => $this->title,
             'content' => $this->content,
             'admin_id' => Auth::guard('admin')->user()->id,
         ]);
         $this->reset(['title', 'content']);
+        // send announcement notification to all vendors
+        $vendors = Vendor::all();
+        Notification::send($vendors,new NewAnnouncementToVendorNotification($announcement));
         $this->dispatch('createAnnouncementModal');
         $this->dispatch('refreshAnnouncements');
     }

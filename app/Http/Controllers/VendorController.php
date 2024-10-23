@@ -24,7 +24,7 @@ class VendorController extends Controller
     }
     public function announcements()
     {
-        return view('vendor.notifications');
+        return view('vendor.announcements');
     }
 
     /**

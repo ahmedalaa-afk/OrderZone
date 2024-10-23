@@ -28,11 +28,11 @@
         </li>
         @endrole
         @role('vendor', 'vendor')
-        <li class="menu-item mt-3 @yield('notifications-active')">
-            <a href="{{ route('vendor.notifications') }}" class="menu-link">
+        <li class="menu-item mt-3 @yield('announcements-active')">
+            <a href="{{ route('vendor.announcements') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
                 <div data-i18n="Analytics" class="notification" id="notification-item">
-                    Notifications
+                    Announcements
                     <span id="notification-counter" class="text-danger">
                         @if (count(Auth::guard('vendor')->user()->unreadNotifications) > 0)
                         +{{count(Auth::guard('vendor')->user()->unreadNotifications)}}
