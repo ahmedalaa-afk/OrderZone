@@ -51,3 +51,11 @@ window.Echo.channel("accepted_product").listen(
 
   }
 );
+
+window.Echo.channel("new-announcement-to-vendor").listen(
+  "NewAnnouncementToVendorNotification", function (data) {
+    $("#notification-item").load('#notification-item > *');
+    Livewire.dispatch('refreshVendorAnnouncements');
+
+  }
+);

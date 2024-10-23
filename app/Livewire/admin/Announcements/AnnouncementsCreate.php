@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Announcements;
 
+use App\Events\NewAnnouncementToVendorEvent;
 use App\Models\Announcement;
 use App\Models\Vendor;
 use App\Notifications\NewAnnouncementToVendorNotification;
@@ -29,6 +30,8 @@ class AnnouncementsCreate extends Component
         // send announcement notification to all vendors
         $vendors = Vendor::all();
         Notification::send($vendors,new NewAnnouncementToVendorNotification($announcement));
+        // dispatch event notification
+        NewAnnouncementToVendorEvent::dispatch();
         $this->dispatch('createAnnouncementModal');
         $this->dispatch('refreshAnnouncements');
     }
