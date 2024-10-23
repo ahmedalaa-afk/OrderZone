@@ -12,6 +12,8 @@ class Announcement extends Model
 
     public function admin()
     {
-        return $this->belongsTo(Admin::class)->where('role', 'vendor_manager');
+        return $this->belongsTo(Admin::class)->whereHas('roles', function ($query) {
+            $query->where('name', 'vendor_manager');
+        });
     }
 }

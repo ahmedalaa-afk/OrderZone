@@ -51,8 +51,8 @@ class NewAnnouncementToVendorNotification extends Notification
     {
         return [
             'title' => $this->announcement->title,
-            'body' => $this->announcement->content,
-            'vendor_manager' => $this->announcement->admin->name,
+            'content' => $this->announcement->content,
+            'admin_name' => $this->announcement->admin->name,
         ];
     }
 }
