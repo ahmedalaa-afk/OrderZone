@@ -41,9 +41,6 @@ class NotificationsShow extends Component
 
             $this->reset('notification');
 
-            $vendor->status = "approved";
-            $vendor->save();
-
             // send email notification to vendor
             Notification::sendNow($vendor, new SendAcceptVendorNotification());
             $this->dispatch('showNotificationModal');
