@@ -6,6 +6,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Middleware\CheckAdmin;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\checkUserStatus;
 use App\Http\Middleware\isVendorRegistrationOpen;
 use App\Http\Middleware\Vendor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -75,6 +76,7 @@ class Kernel extends HttpKernel
         'isVendorRegistrationOpen' => isVendorRegistrationOpen::class,
         'check_permission' => CheckPermission::class,
         'check_role' => CheckRole::class,
+        'checkUserStatus' => checkUserStatus::class,
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,

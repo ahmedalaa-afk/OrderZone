@@ -11,7 +11,6 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Status</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
@@ -24,23 +23,11 @@
                         {{ $role->name }}
                         @endforeach
                     </td>
-                    <td>{{ $user->status }}</td>
                     <td>
-                        @role('user_manager','admin')
-                        <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i>
-                                    Block</a>
-                                <a class="dropdown-item" href="#"
-                                    wire:click.prevent="$dispatch('deleteUser', { id: {{ $user->id }} })"><i
-                                        class="bx bx-trash me-1"></i>
-                                    Delete</a>
-                            </div>
-                        </div>
-                        @endrole
+                        <a class="btn btn-primary" href="#"
+                            wire:click.prevent="$dispatch('changeUserStatus', { id: '{{ $user->id }}' })">
+                            {{ $user->status }}
+                        </a>
                     </td>
                 </tr>
                 @endforeach
