@@ -7,29 +7,32 @@ use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 
-class WomenProducts extends Component
+class MenProducts extends Component
 {
     use Filtering;
-    public $products, $categories, $key='women';
+    public $products, $categories, $key = 'men';
     protected $listeners = ['filterProducts'];
     public function mount()
     {
-        $this->categories = Category::where('name', 'like', 'women%')->get();
+        $this->categories = Category::where('name', 'like', 'men%')->get();
 
         $this->products = Product::whereHas('categories', function ($query) {
             $query->whereIn('name', $this->categories->pluck('name')->toArray());
         })->get();
     }
-    public function filterProducts($key){
+    public function filterProducts($key)
+    {
         $this->key = $key;
     }
-    public function updatedKey(){
+    public function updatedKey()
+    {
         $this->products = $this->getCategoryProducts($this->key);
     }
     public function render()
     {
-        return view('user.products.women-products', [
-            'products' => $this->products
-        , 'categories' => $this->categories]);
+        return view('user.products.men-products', [
+            'products' => $this->products,
+            'categories' => $this->categories
+        ]);
     }
 }

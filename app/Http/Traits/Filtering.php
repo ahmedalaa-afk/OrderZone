@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 trait Filtering
 {
-    public function getWomenProducts($key){
+    public function getCategoryProducts($key){
         return Product::whereHas('categories', function ($query) use ($key){
             $query->where('name', $key);
         })->get();

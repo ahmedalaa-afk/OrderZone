@@ -27,10 +27,10 @@ class ProductsData extends Component
     {
         $product = Product::where('slug', $slug)->first();
         $product->status = 'accepted';
-        // Send notification to vendor
-        Notification::send($product->vendor, new ProductAcceptedNotification());
         $this->dispatch('refreshProducts')->to(ProductsData::class);
         $product->save();
+        // Send notification to vendor
+        Notification::send($product->vendor, new ProductAcceptedNotification());
     }
     public function UpdatingSearch()
     {
@@ -38,10 +38,12 @@ class ProductsData extends Component
     }
     public function render()
     {
+        $products = Product::where('title', 'like', '%' . $this->search . '%')
+        ->where('status', '!=', 'accepted')
+        ->orderBy($this->key, 'asc')->paginate(10);
+
         return view('admin.products.products-data', [
-            'products' => Product::where('title', 'like', '%' . $this->search . '%')
-                ->where('status', '!=', 'accepted')
-                ->orderBy($this->key, 'asc')->paginate(10)
+            'products' => $products
         ]);
     }
 }

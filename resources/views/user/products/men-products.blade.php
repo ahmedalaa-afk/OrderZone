@@ -1,4 +1,4 @@
-<div class="col-lg-8 offset-lg-1">
+<div class="col-lg-8">
     <div class="filter-control">
         {{-- <ul>
             @foreach ($categories as $index => $category)
@@ -9,10 +9,10 @@
             @endforeach
         </ul> --}}
     </div>
-    <div class="product-slider owl-carousel" wire:ignore.self>
+    <div class="product-slider owl-carousel">
         @if (count($products) > 0)
-        @foreach ($products as $index => $product)
-        <div class="product-item" wire:key='{{$index}}'>
+        @foreach ($products as $product)
+        <div class="product-item">
             <div class="pi-pic">
                 @foreach ($product->photos->take(1) as $photo)
                 <img src="{{Storage::url($photo->photo)}}" alt="">
@@ -41,3 +41,4 @@
         @endforeach
         @endif
     </div>
+</div>
