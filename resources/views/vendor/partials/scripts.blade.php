@@ -29,4 +29,9 @@
             $('#createModal').modal('toggle');
         });
     });
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('createDiscountModal', (event) => {
+            $('#discountModal').modal('toggle');
+        });
+    });
 </script>

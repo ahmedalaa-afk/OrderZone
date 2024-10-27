@@ -28,9 +28,21 @@
                     <td>{{ $product->total }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>
-                        <a class="btn btn-danger" href="#" wire:click.prevent="$dispatch('deleteProduct',{slug:'{{$product->slug}}'})">
-                            <i class="bx bx-trash me-1"></i> Delete
-                        </a>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('deleteProduct',{slug:'{{$product->slug}}'})">
+                                    <i class="bx bx-trash me-1"></i> Delete
+                                </a>
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('productDiscount',{slug:'{{$product->slug}}'})">
+                                    <i class='bx bxs-discount'></i> Discount
+                                </a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
