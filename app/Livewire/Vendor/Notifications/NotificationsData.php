@@ -16,8 +16,8 @@ class NotificationsData extends Component
     {
         $notifications = Auth::guard('vendor')
             ->user()
-            ->unreadNotifications()
-            ->where('data->key', 'announcement')
+            ->notifications()
+            ->where('data->key','notification')
             ->paginate(10);
 
         return view('vendor.notifications.notifications-data', ['notifications' => $notifications]);

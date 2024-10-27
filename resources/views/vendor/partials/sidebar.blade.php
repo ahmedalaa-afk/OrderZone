@@ -27,7 +27,7 @@
             </a>
         </li>
         @endrole
-        {{-- @role('vendor', 'vendor')
+        @role('vendor', 'vendor')
         <li class="menu-item mt-3 @yield('announcements-active')">
             <a href="{{ route('vendor.announcements') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
@@ -41,7 +41,7 @@
                 </div>
             </a>
         </li>
-        @endrole --}}
+        @endrole
         @role('vendor', 'vendor')
         <li class="menu-item mt-3 @yield('notifications-active')">
             <a href="{{ route('vendor.notifications') }}" class="menu-link">

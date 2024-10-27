@@ -45,7 +45,8 @@ class ProductAcceptedNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'Your Product Has Been Accepted.'
+            'message' => 'Your Product Has Been Accepted.',
+            'key' => 'notification'
         ];
     }
 }
