@@ -26,6 +26,10 @@ class VendorController extends Controller
     {
         return view('vendor.announcements');
     }
+    public function notifications()
+    {
+        return view('vendor.notifications');
+    }
 
     /**
      * Show the form for creating a new resource.

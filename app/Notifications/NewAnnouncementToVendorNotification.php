@@ -53,6 +53,7 @@ class NewAnnouncementToVendorNotification extends Notification
             'title' => $this->announcement->title,
             'content' => $this->announcement->content,
             'admin_name' => $this->announcement->admin->name,
+            'key' => 'announcement',
         ];
     }
 }
