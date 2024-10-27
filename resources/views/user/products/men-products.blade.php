@@ -11,7 +11,7 @@
     </div>
     <div class="product-slider owl-carousel">
         @if (count($products) > 0)
-        @foreach ($products as $product)
+        @foreach ($products->take(10) as $product)
         <div class="product-item">
             <div class="pi-pic">
                 @foreach ($product->photos->take(1) as $photo)
@@ -22,7 +22,11 @@
                     <i class="icon_heart_alt"></i>
                 </div>
                 <ul>
-                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                    <li class="w-icon active">
+                        <a href="#" wire:click.prevent="$dispatch('addToCart', { slug: '{{ $product->slug }}' })">
+                            <i class="icon_bag_alt"></i>
+                        </a>
+                    </li>
                     <li class="quick-view"><a href="#">+ Quick View</a></li>
                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                 </ul>
@@ -30,10 +34,10 @@
             <div class="pi-text">
                 <div class="catagory-name">{{$key}}</div>
                 <a href="#">
-                    <h5>Pure Pineapple</h5>
+                    <h5>{{$product->title }}</h5>
                 </a>
                 <div class="product-price">
-                    $14.00
+                    ${{$product->price}}
                     <span>$35.00</span>
                 </div>
             </div>

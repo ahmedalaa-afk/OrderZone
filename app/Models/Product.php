@@ -24,4 +24,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductPhotos::class);
     }
+    public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
 }
