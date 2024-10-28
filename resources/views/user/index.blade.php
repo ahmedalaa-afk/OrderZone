@@ -96,6 +96,7 @@
 <!-- Deal Of The Week Section Begin-->
 <section class="deal-of-week set-bg spad" data-setbg="{{asset('img')}}/time-bg.jpg">
     <div class="container">
+        @dd($products)
         <div class="col-lg-6 text-center">
             <div class="section-title">
                 <h2>Deal Of The Week</h2>

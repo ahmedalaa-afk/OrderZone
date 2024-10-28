@@ -1,28 +1,23 @@
 <x-discount-modal title="Create Discount">
     <div class="col-md-6 mb-3">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-control" name="name" placeholder="Name" wire:model='name' />
-        @include('admin.error', ['property' => 'name'])
+        <label for="start_at" class="col-md-2 col-form-label">Start At:</label>
+        <div class="col-md-10">
+            <input class="form-control" type="datetime-local" id="start_at" wire:model="start_at" />
+            @error('start_at') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
     </div>
     <div class="col-md-6 mb-3">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-control" autocomplete="email" placeholder="exampel@gmail.com" name="email"
-            wire:model='email' />
-        @include('admin.error', ['property' => 'email'])
+        <label for="end_at" class="col-md-2 col-form-label">End At:</label>
+        <div class="col-md-10">
+            <input class="form-control" type="datetime-local" id="end_at" wire:model="end_at" />
+            @error('end_at') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
     </div>
     <div class="col-md-6 mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" wire:model='password' />
-        @include('admin.error', ['property' => 'password'])
-    </div>
-    <div class="col-md-6 mb-3">
-        <label class="form-label">Role</label>
-        <select class="form-control" name="role" wire:model='role'>
-            <option value="user" selected>User</option>
-            <option value="admin">Admin</option>
-            <option value="vendor">Vendor</option>
-        </select>
-        <p class="text-primary">Note that role by default is user.</p>
-        @include('admin.error', ['property' => 'role'])
+        <label class="form-label">Amount</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="amount" wire:model='amount' />
+            @error('amount') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
     </div>
 </x-discount-modal>

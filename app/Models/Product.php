@@ -32,6 +32,6 @@ class Product extends Model
     }
     public function discount()
     {
-        return $this->hasOne(Product::class, 'product_slug', 'slug');
+        return $this->hasOne(ProductDiscount::class, 'product_slug', 'slug');
     }
 }
