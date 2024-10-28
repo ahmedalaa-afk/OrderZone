@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class DiscountsCreate extends Component
 {
-    public $product, $amount, $start_at, $end_at;
+    public $product, $amount, $start_at, $end_at,$name;
     protected $listeners = ['productDiscount'];
     public function rules()
     {
@@ -25,11 +25,10 @@ class DiscountsCreate extends Component
     public function submit() {
         $this->validate();
         // Create discount record for the product
-        $discount = $this->product->discount()->create([
+        $discount = $this->product->discounts()->create([
             'amount' => $this->amount,
             'start_at' => $this->start_at,
             'end_at' => $this->end_at,
-            'product_slug' => $this->product->slug
         ]);
         $this->product->total = $this->product->price - $discount->amount;
         $this->product->save();

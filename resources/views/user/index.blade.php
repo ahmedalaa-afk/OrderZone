@@ -94,22 +94,21 @@
 
 
 <!-- Deal Of The Week Section Begin-->
-<section class="deal-of-week set-bg spad" data-setbg="{{asset('img')}}/time-bg.jpg">
+@if ($product && isset($product->discounts))
+<section class="deal-of-week set-bg spad" data-setbg="{{Storage::url($product->photos[0]->photo)}}">
     <div class="container">
-        @dd($products)
         <div class="col-lg-6 text-center">
             <div class="section-title">
                 <h2>Deal Of The Week</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
-                    consectetur adipisicing elit </p>
+                <p>{{$product->description}}</p>
                 <div class="product-price">
-                    $35.00
-                    <span>/ HanBag</span>
+                    ${{$product->total}}
+                    <span>/ {{str_replace('-',' ',$product->getCategoryName())}}</span>
                 </div>
             </div>
             <div class="countdown-timer" id="countdown">
                 <div class="cd-item">
-                    <span>56</span>
+                    <span>{{$product->discounts->start_at}}</span>
                     <p>Days</p>
                 </div>
                 <div class="cd-item">
@@ -129,6 +128,7 @@
         </div>
     </div>
 </section>
+@endif
 <!-- Deal Of The Week Section End -->
 
 <!-- Man Banner Section Begin -->

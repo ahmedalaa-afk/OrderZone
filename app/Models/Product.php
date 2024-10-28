@@ -30,8 +30,8 @@ class Product extends Model
     {
         return $this->belongsTo(Cart::class);
     }
-    public function discount()
+    public function discounts()
     {
-        return $this->hasOne(ProductDiscount::class, 'product_slug', 'slug');
+        return $this->morphOne(Discount::class, 'discountable');
     }
 }

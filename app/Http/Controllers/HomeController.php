@@ -18,7 +18,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $product = Product::whereHas('discounts')->first();
+        return view('user.index',compact('product'));
     }
     public function shop()
     {
