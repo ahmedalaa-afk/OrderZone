@@ -37,10 +37,17 @@
                 <a href="#">
                     <h5>{{$product->title }}</h5>
                 </a>
+                @if (isset($product->discounts) && $product->discounts->type == 'product' &&
+                $product->discounts->end_at > now())
                 <div class="product-price">
-                    ${{$product->price}}
-                    <span>$35.00</span>
+                    ${{$product->total}}
+                    <span>${{$product->price}}</span>
                 </div>
+                @else
+                <div class="product-price">
+                    ${{$product->total}}
+                </div>
+                @endif
             </div>
         </div>
         @endforeach
