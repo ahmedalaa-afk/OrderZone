@@ -94,7 +94,7 @@
 
 
 <!-- Deal Of The Week Section Begin-->
-@if ($product && isset($product->discounts))
+@if ($product && isset($product->discounts) && $product->discounts->end_at > now())
 <section class="deal-of-week set-bg spad" data-setbg="{{Storage::url($product->photos[0]->photo)}}">
     <div class="container">
         <div class="col-lg-6 text-center">

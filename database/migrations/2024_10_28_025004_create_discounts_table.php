@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->enum('type', ['product', 'category', 'weekly', 'black_friday'])->default('product');
             $table->decimal('amount', 8, 2);
             $table->morphs('discountable');
             $table->timestamp('start_at');
