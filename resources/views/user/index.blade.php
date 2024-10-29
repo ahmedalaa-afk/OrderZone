@@ -2,7 +2,9 @@
 @section('title','Home')
 @section('active-home','active')
 @section('content')
+
 <!-- Hero Section Begin -->
+@if ($product && isset($product->discounts) && $product->discounts->type == 'black_firday' && $product->discounts->end_at > now())
 <section class="hero-section">
     <div class="hero-items owl-carousel">
         <div class="single-hero-items set-bg" data-setbg="{{asset('img')}}/hero-1.jpg">
@@ -39,6 +41,7 @@
         </div>
     </div>
 </section>
+@endif
 <!-- Hero Section End -->
 
 <!-- Banner Section Begin -->
@@ -94,7 +97,7 @@
 
 
 <!-- Deal Of The Week Section Begin-->
-@if ($product && isset($product->discounts) && $product->discounts->end_at > now())
+@if ($product && isset($product->discounts) && $product->discounts->end_at > now() && $product->discounts->type == 'weekly')
 <section class="deal-of-week set-bg spad" data-setbg="{{Storage::url($product->photos[0]->photo)}}">
     <div class="container">
         <div class="col-lg-6 text-center">
