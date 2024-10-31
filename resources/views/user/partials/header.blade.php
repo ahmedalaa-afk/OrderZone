@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="{{route('user.index')}}">
                             <img src="{{ asset('img') }}/logo.png" alt="">
                         </a>
                     </div>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="cart-price">$150.00</li>
+                        <li class="cart-price">${{$total}}</li>
                     </ul>
                 </div>
             </div>

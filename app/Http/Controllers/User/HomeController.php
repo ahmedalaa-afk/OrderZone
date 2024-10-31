@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\CartService;
@@ -24,13 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         $product = Product::whereHas('discounts')->first();
-        $total = $this->cartService->getToalCartPrice(); // Corrected the typo
+        $total = $this->cartService->getToalCartPrice();
         return view('user.index', compact('product', 'total'));
     }
 
     public function shop()
     {
-        return view('user.shop');
+        $products = Product::all();
+        $total = $this->cartService->getToalCartPrice();
+        return view('user.shop', compact('total','products'));
     }
     public function blog()
     {

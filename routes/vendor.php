@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\VendorController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Vendor\ProductController;
+use App\Http\Controllers\Vendor\VendorController;
 use Illuminate\Support\Facades\Route;
 
 
