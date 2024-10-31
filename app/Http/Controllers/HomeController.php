@@ -4,23 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function __construct()
+    protected $cartService;
+
+    public function __construct(CartService $cartService)
     {
-        $this->middleware(['auth','checkUserStatus']);
+        $this->cartService = $cartService;
+        $this->middleware(['auth', 'checkUserStatus']);
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $product = Product::whereHas('discounts')->first();
-        return view('user.index',compact('product'));
+        $total = $this->cartService->getToalCartPrice(); // Corrected the typo
+        return view('user.index', compact('product', 'total'));
     }
+
     public function shop()
     {
         return view('user.shop');

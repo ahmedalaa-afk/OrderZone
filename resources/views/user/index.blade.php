@@ -93,9 +93,6 @@
 </section>
 <!-- Women Banner Section End -->
 
-
-
-
 <!-- Deal Of The Week Section Begin-->
 @if ($product && isset($product->discounts) && $product->discounts->end_at > now() && $product->discounts->type == 'weekly')
 <section class="deal-of-week set-bg spad" data-setbg="{{Storage::url($product->photos[0]->photo)}}">

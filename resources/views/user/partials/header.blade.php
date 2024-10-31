@@ -88,38 +88,29 @@
                                 <div class="select-items">
                                     <table>
                                         <tbody>
+                                            @if (isset(Auth::user()->carts))
+                                            @foreach (Auth::user()->carts as $cart)
                                             <tr>
-                                                <td class="si-pic"><img src="{{ asset('img') }}/select-product-1.jpg"
-                                                        alt=""></td>
+                                                <td class="si-pic"><img src="{{Storage::url($cart->product->photos->first()->photo)}}"
+                                                        alt="" width="100"></td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
+                                                        <p>${{$cart->product->total}}</p>
+                                                        <h6>{{$cart->product->title}}</h6>
                                                     </div>
                                                 </td>
                                                 <td class="si-close">
                                                     <i class="ti-close"></i>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="{{ asset('img') }}/select-product-2.jpg"
-                                                        alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="select-total">
                                     <span>total:</span>
-                                    <h5>$120.00</h5>
+                                    <h5>${{$total}}</h5>
                                 </div>
                                 <div class="select-button">
                                     <a href="#" class="primary-btn view-card">VIEW CARD</a>

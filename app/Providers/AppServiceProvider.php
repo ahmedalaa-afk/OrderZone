@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Department;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->share('departments',Department::all());
+        view()->share('categories',Category::all());
     }
 }
