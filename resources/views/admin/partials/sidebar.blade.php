@@ -97,6 +97,14 @@
             </a>
         </li>
         @endrole
+        @role('product_manager', 'admin')
+        <li class="menu-item mt-3 @yield('departments-active')">
+            <a href="{{ route('admin.departments') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-category'></i>
+                <div data-i18n="Analytics">Departments</div>
+            </a>
+        </li>
+        @endrole
     </ul>
 </aside>
 <!-- / Menu -->

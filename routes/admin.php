@@ -21,10 +21,11 @@ Route::prefix('admin')->controller(AdminController::class)->name('admin.')->grou
     // Vendor Manager Routes
     Route::get('/vendors','vendors')->name('vendors');
     Route::get('/notifications','notifications')->name('notifications');
-    Route::get('/categories','categories')->name('categories');
     Route::get('/announcements','vendorsAnnouncement')->name('announcements');
     // Product Manager Routes
     Route::get('/products','products')->name('products');
+    Route::get('/categories','categories')->name('categories');
+    Route::get('/departments','departments')->name('departments');
 
     
     // Authentication Routes

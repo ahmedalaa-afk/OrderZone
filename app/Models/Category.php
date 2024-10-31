@@ -26,4 +26,8 @@ class Category extends Model
     {
         return $this->morphMany(Discount::class, 'discountable');
     }
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }
