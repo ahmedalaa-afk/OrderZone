@@ -16,6 +16,16 @@
                 </select>
                 @include('admin.error', ['property' => 'parent_id'])
             </div>
+            <div class="col-6 mt-3">
+                <label for="category">Department:</label>
+                <select name="department" class="form-control" id="Department" wire:model="department_id">
+                    <option value="null">Select Department</option>
+                    @foreach ($departments as $department)
+                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
+                @include('admin.error', ['property' => 'department_id'])
+            </div>
 
             <div class="modal-footer mt-3">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

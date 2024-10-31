@@ -9,6 +9,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Parent</th>
+                    <th>Department</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -17,8 +18,8 @@
                 <tr>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->parent_id }}</td>
+                    <td>{{ $category->department_id }}</td>
                     <td>
-                        @role('vendor_manager','admin')
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
@@ -29,9 +30,7 @@
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
                             </div>
-
                         </div>
-                        @endrole
                     </td>
                 </tr>
                 @endforeach
