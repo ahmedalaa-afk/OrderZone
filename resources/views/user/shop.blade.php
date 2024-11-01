@@ -25,9 +25,14 @@
                 <div class="filter-widget">
                     <h4 class="fw-title">Categories</h4>
                     <ul class="filter-catagories">
-                        <li><a href="#">Men</a></li>
-                        <li><a href="#">Women</a></li>
-                        <li><a href="#">Kids</a></li>
+                        @foreach ($categories as $category)
+                        <li>
+                            <a href="{{ route('user.getCategoryProducts', ['category' => $category->name ?? 'all']) }}">
+                                {{ str_replace('-', ' ', $category->name) }}
+                            </a>
+                        </li>
+
+                        @endforeach
                     </ul>
                 </div>
                 <div class="filter-widget">
@@ -145,23 +150,7 @@
                 </div>
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
-                <div class="product-show-option">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-7">
-                            <div class="select-option">
-                                <select class="sorting">
-                                    <option value="">Default Sorting</option>
-                                </select>
-                                <select class="p-show">
-                                    <option value="">Show:</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-5 text-right">
-                            <p>Show 01- 09 Of 36 Product</p>
-                        </div>
-                    </div>
-                </div>
+                @if (count($products) > 0)
                 <div class="product-list">
                     <div class="row">
                         @foreach ($products as $product)
@@ -180,14 +169,22 @@
                                     </ul>
                                 </div>
                                 <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
+                                    <div class="catagory-name">{{str_replace('-','
+                                        ',$product->categories->first()->name)}}</div>
                                     <a href="#">
                                         <h5>{{$product->name}}</h5>
                                     </a>
+                                    @if (isset($product->discounts) && $product->discounts->type == 'product' &&
+                                    $product->discounts->end_at > now())
                                     <div class="product-price">
-                                        $14.00
-                                        <span>$35.00</span>
+                                        ${{$product->total}}
+                                        <span>${{$product->price}}</span>
                                     </div>
+                                    @else
+                                    <div class="product-price">
+                                        ${{$product->total}}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -200,6 +197,11 @@
                         Loading More
                     </a>
                 </div>
+                @else
+                <div class="">
+                    <span class="text-danger">no item found.</span>
+                </div>
+                @endif
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\Filtering;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\CartService;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    use Filtering;
     protected $cartService;
 
     public function __construct(CartService $cartService)
@@ -32,8 +34,27 @@ class HomeController extends Controller
     public function shop()
     {
         $products = Product::all();
+        $categories = Category::all();
         $total = $this->cartService->getToalCartPrice();
-        return view('user.shop', compact('total','products'));
+        return view('user.shop', compact('total', 'products', 'categories'));
+    }
+    public function getCategoryProducts($key)
+    {
+        if ($key == 'all') {
+
+            $products = Product::all();
+        } else {
+
+            $categories = Category::where('name', 'like', $key . '%')->get();
+
+            $products = Product::whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('name', $categories->pluck('name')->toArray());
+            })->get();
+        }
+
+        $total = $this->cartService->getToalCartPrice();
+
+        return view('user.shop', compact('total', 'products'));
     }
     public function blog()
     {

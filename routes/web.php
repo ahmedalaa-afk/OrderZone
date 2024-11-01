@@ -25,6 +25,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
     Route::middleware(['auth'])->group(function () {
         Route::resource('/', HomeController::class);
         Route::get('/shop', 'shop')->name('shop');
+        Route::get('/getCategoryProducts/{category}', 'getCategoryProducts')->name('getCategoryProducts');
         Route::get('/blog', 'blog')->name('blog');
         Route::get('/contact', 'contact')->name('contact');
     });

@@ -13,12 +13,14 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use App\Http\Traits\makeSlug;
+use App\Models\Brand;
+use App\Models\ProductColors;
 
 class ProductsCreate extends Component
 {
     use WithFileUploads;
     use makeSlug;
-    public $title, $description, $price, $category, $total, $quantity, $photos;
+    public $title, $description, $price, $category, $total, $quantity, $photos,$color,$brand;
     public function rules()
     {
         return [
@@ -28,7 +30,9 @@ class ProductsCreate extends Component
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
             'photos' => 'required',
-            'photos.*' => 'mimes:png,jpg,jpeg'
+            'photos.*' => 'mimes:png,jpg,jpeg',
+            'color' => 'required|string',
+            'brand' => 'required|string|exists:brands,id'
         ];
     }
     public function submit()
@@ -61,6 +65,13 @@ class ProductsCreate extends Component
                 ]);
             }
         }
+        // Product Color
+        ProductColors::create([
+            'color' => $data['color'],
+            'product_id' => $product->id
+        ]);
+        // Product Brand
+        $product->brand()->attach($data['brand']);
         // Send Notification to Product Managers
         $admins = Admin::role('product_manager')->where('status', 'active')->get();
         Notification::send($admins, new NewProductCreatedNotification($product,Auth::guard('vendor')->user()));
@@ -71,6 +82,6 @@ class ProductsCreate extends Component
     }
     public function render()
     {
-        return view('vendor.products.products-create', ['categories' => Category::all()]);
+        return view('vendor.products.products-create', ['categories' => Category::all(),'brands' => Brand::all()]);
     }
 }

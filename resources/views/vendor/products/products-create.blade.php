@@ -24,6 +24,15 @@
                 <x-input-error :messages="$errors->get('category')" class="mt-2" />
             </div>
             <div class="col-6 mt-3">
+                <label for="brand">Brand:</label>
+                <select name="" class="form-control" id="Brand" wire:model='brand'>
+                    @foreach ($brands as $brand)
+                    <option value="{{$brand->id }}">{{ $brand->name }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('brand')" class="mt-2" />
+            </div>
+            <div class="col-6 mt-3">
                 <label for="price">price:</label>
                 <input type="number" class="form-control" min="1" id="price" wire:model="price">
                 <x-input-error :messages="$errors->get('price')" class="mt-2" />
@@ -34,6 +43,14 @@
 
                 <x-input-error :messages="$errors->get('photos')" class="mt-2" />
                 <x-input-error :messages="$errors->get('photos.*')" class="mt-2" />
+            </div>
+            <div class="col-6 mt-3">
+                <label for="html5-color-input" class="col-md-2 col-form-label">Color</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="color" value="#666EE8" id="html5-color-input"
+                        wire:model="color" />
+                    <x-input-error :messages="$errors->get('color')" class="mt-2" />
+                </div>
             </div>
 
             <div class="col-6 mt-3">
