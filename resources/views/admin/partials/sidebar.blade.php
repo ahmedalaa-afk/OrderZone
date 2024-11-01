@@ -88,20 +88,22 @@
                 </div>
             </a>
         </li>
-        @endrole
-        @role('product_manager', 'admin')
         <li class="menu-item mt-3 @yield('categories-active')">
             <a href="{{ route('admin.categories') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-category'></i>
                 <div data-i18n="Analytics">Categories</div>
             </a>
         </li>
-        @endrole
-        @role('product_manager', 'admin')
         <li class="menu-item mt-3 @yield('departments-active')">
             <a href="{{ route('admin.departments') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-category'></i>
                 <div data-i18n="Analytics">Departments</div>
+            </a>
+        </li>
+        <li class="menu-item mt-3 @yield('brands-active')">
+            <a href="{{ route('admin.brands') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-category'></i>
+                <div data-i18n="Analytics">Brands</div>
             </a>
         </li>
         @endrole

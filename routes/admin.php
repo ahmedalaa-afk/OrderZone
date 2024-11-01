@@ -23,6 +23,7 @@ Route::prefix('admin')->controller(AdminController::class)->name('admin.')->grou
     Route::get('/products','products')->name('products');
     Route::get('/categories','categories')->name('categories');
     Route::get('/departments','departments')->name('departments');
+    Route::get('/brands','brands')->name('brands');
 
     
     // Authentication Routes
