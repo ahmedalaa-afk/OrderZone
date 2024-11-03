@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Filtering;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\CartService;
@@ -35,8 +36,9 @@ class HomeController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
+        $brands = Brand::all();
         $total = $this->cartService->getToalCartPrice();
-        return view('user.shop', compact('total', 'products', 'categories'));
+        return view('user.shop', compact('total', 'products', 'categories','brands'));
     }
     public function getCategoryProducts($key)
     {

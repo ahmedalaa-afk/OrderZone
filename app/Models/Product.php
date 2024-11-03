@@ -30,9 +30,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductColors::class);
     }
-    public function brand()
+    public function brands()
     {
-        return $this->hasOne(ProductBrand::class);
+        return $this->belongsToMany(Brand::class, 'brand_product');
     }
     public function cart()
     {
