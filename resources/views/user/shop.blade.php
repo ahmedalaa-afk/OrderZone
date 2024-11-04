@@ -35,49 +35,44 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Brand</h4>
-                    <div class="fw-brand-check">
-                        <form action="{{ route('user.getBrandProducts') }}" method="POST">
-                            @csrf
+                <form action="{{ route('user.filterProducts') }}" method="POST">
+                    @csrf
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Brand</h4>
+                        <div class="fw-brand-check">
                             @foreach ($brands as $brand)
                             <div class="bc-item">
                                 <label for="bc-{{$brand->name}}">
                                     {{$brand->name}}
                                     <input type="checkbox" name="brands[]" value="{{$brand->name}}"
                                         id="bc-{{$brand->name}}" @if(isset($selectedBrandNames) &&
-                                        in_array($brand->name, $selectedBrandNames)) checked @endif
-                                    onchange="this.form.submit()">
+                                        in_array($brand->name, $selectedBrandNames)) checked @endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             @endforeach
-                        </form>
+                        </div>
                     </div>
-
-
-
-                </div>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Price</h4>
-                    <form action="" method="post">
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Price</h4>
                         <div class="filter-range-wrap">
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                                    <input type="text" id="minamount" name="minamount">
+                                    <input type="text" id="maxamount" name="maxamount">
                                 </div>
                             </div>
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
+                                data-min="{{$minamount??0}}" data-max="{{$maxamount??1000}}">
                                 <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                             </div>
                         </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </form>
-                </div>
+                        <button type="submit" class="btn filter-btn">Filter</button>
+                        <a href="{{route('user.shop')}}" class="btn filter-btn">Reset</a>
+                    </div>
+                </form>
                 <div class="filter-widget">
                     <h4 class="fw-title">Color</h4>
                     <div class="fw-color-choose">

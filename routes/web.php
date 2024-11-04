@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +27,8 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
     Route::middleware(['auth'])->group(function () {
         Route::resource('/', HomeController::class);
         Route::get('/shop', 'shop')->name('shop');
-        Route::get('/getCategoryProducts/{category}', 'getCategoryProducts')->name('getCategoryProducts');
-        Route::post('/getBrandProducts', [BrandController::class,'getBrandProducts'])->name('getBrandProducts');
+        Route::get('/categories/{category}', [ProductController::class,'getCategoryProducts'])->name('getCategoryProducts');
+        Route::post('/products/filter', [ProductController::class,'filterProducts'])->name('filterProducts');
         Route::get('/blog', 'blog')->name('blog');
         Route::get('/contact', 'contact')->name('contact');
     });

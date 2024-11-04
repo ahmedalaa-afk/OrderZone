@@ -40,24 +40,6 @@ class HomeController extends Controller
         $total = $this->cartService->getToalCartPrice();
         return view('user.shop', compact('total', 'products', 'categories','brands'));
     }
-    public function getCategoryProducts($key)
-    {
-        if ($key == 'all') {
-
-            $products = Product::all();
-        } else {
-
-            $categories = Category::where('name', 'like', $key . '%')->get();
-
-            $products = Product::whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('name', $categories->pluck('name')->toArray());
-            })->get();
-        }
-
-        $total = $this->cartService->getToalCartPrice();
-
-        return view('user.shop', compact('total', 'products'));
-    }
     public function blog()
     {
         return view('user.blog');
