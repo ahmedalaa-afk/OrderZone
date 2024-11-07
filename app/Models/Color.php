@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Color extends Model
 {
+    protected $fillable=['color'];
     use HasFactory;
+    public function products(){
+        $this->hasMany(Product::class);
+    }
 }

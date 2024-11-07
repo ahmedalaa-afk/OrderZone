@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\Filtering;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -35,10 +36,9 @@ class HomeController extends Controller
     public function shop()
     {
         $products = Product::all();
-        $categories = Category::all();
-        $brands = Brand::all();
+        $colors = Color::all();
         $total = $this->cartService->getToalCartPrice();
-        return view('user.shop', compact('total', 'products', 'categories','brands'));
+        return view('user.shop', compact('total', 'products','colors'));
     }
     public function blog()
     {
