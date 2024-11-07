@@ -20,10 +20,10 @@ class ColorsCreate extends Component
     {
         $this->validate($this->rules());
         Color::create([
-            'color' => $this->name,
+            'color' => $this->color,
         ]);
-        $this->reset(['name']);
-        $this->dispatch('createBrand');
+        $this->reset(['color']);
+        $this->dispatch('createColor');
         $this->dispatch('refresColors')->to(ColorsData::class);
     }
     public function render()
