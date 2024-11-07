@@ -24,6 +24,7 @@ Route::prefix('admin')->controller(AdminController::class)->name('admin.')->grou
     Route::get('/categories','categories')->name('categories');
     Route::get('/departments','departments')->name('departments');
     Route::get('/brands','brands')->name('brands');
+    Route::get('/colors','colors')->name('colors');
 
     
     // Authentication Routes

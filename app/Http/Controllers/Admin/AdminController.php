@@ -64,5 +64,9 @@ class AdminController extends Controller
     {
         return view('admin.brands');
     }
+    public function colors()
+    {
+        return view('admin.colors');
+    }
 
 }
