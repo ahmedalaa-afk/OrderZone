@@ -106,6 +106,12 @@
                 <div data-i18n="Analytics">Brands</div>
             </a>
         </li>
+        <li class="menu-item mt-3 @yield('sizes-active')">
+            <a href="{{ route('admin.sizes') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-category'></i>
+                <div data-i18n="Analytics">Sizes</div>
+            </a>
+        </li>
         <li class="menu-item mt-3 @yield('colors-active')">
             <a href="{{ route('admin.colors') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-category'></i>
