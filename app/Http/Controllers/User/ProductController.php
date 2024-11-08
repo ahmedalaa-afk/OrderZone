@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ class ProductController extends Controller
 
 
         $selectedBrandNames = $request->input('brands', []);
+        $selectedColor = $request->input('color');
 
         $query = Product::query();
 
@@ -42,17 +44,26 @@ class ProductController extends Controller
                 $query->whereIn('name', $selectedBrandNames);
             });
         }
+        if(!empty($request->input('color'))){
+            $query->whereHas('color', function ($query) use ($selectedColor) {
+                $query->where('color', $selectedColor);
+            });
+        }
+
+        
 
         $products = $query->get();
 
 
         $brands = Brand::all();
+        $colors = Color::all();
 
         $total = $this->cartService->getToalCartPrice();
 
         return view('user.shop', [
             'brands' => $brands,
             'products' => $products,
+            'colors' => $colors,
             'total' => $total,
             'selectedBrandNames' => $selectedBrandNames,
             'minamount' => $minamount,

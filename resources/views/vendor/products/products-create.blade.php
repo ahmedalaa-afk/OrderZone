@@ -45,12 +45,13 @@
                 <x-input-error :messages="$errors->get('photos.*')" class="mt-2" />
             </div>
             <div class="col-6 mt-3">
-                <label for="html5-color-input" class="col-md-2 col-form-label">Color</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="color" value="#666EE8" id="html5-color-input"
-                        wire:model="color" />
-                    <x-input-error :messages="$errors->get('color')" class="mt-2" />
-                </div>
+                <label for="color">Color:</label>
+                <select name="" class="form-control" id="color" wire:model='color'>
+                    @foreach ($colors as $color)
+                    <option value="{{$color->id }}">{{ $color->color }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('color')" class="mt-2" />
             </div>
 
             <div class="col-6 mt-3">

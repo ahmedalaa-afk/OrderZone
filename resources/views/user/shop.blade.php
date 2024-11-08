@@ -72,18 +72,20 @@
                         <button type="submit" class="btn filter-btn">Filter</button>
                         <a href="{{route('user.shop')}}" class="btn filter-btn">Reset</a>
                     </div>
-                </form>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Color</h4>
-                    <div class="fw-color-choose">
-                        @foreach ($colors as $color)
-                        <div class="cs-item">
-                            <input type="radio" id="cs-{{$color->color}}">
-                            <label class="cs-{{$color->color}}" for="cs-{{$color->color}}">{{$color->color}}</label>
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Color</h4>
+                        <div class="fw-color-choose">
+                            @foreach ($colors as $color)
+                            <div class="cs-item">
+                                <input type="radio" id="cs-{{$color->color}}" name="color" value="{{ $color->color }}">
+                                <label class="cs-{{$color->color}}" for="cs-{{$color->color}}">{{ $color->color
+                                    }}</label>
+                            </div>
+                            @endforeach
+
                         </div>
-                        @endforeach
                     </div>
-                </div>
+                </form>
                 <div class="filter-widget">
                     <h4 class="fw-title">Size</h4>
                     <div class="fw-size-choose">
