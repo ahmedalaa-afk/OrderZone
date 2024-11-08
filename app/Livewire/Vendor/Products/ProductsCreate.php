@@ -53,6 +53,7 @@ class ProductsCreate extends Component
                 'quantity' => $data['quantity'],
                 'vendor_id' => Auth::guard('vendor')->user()->id,
                 'color_id' => $data['color'],
+                'size_id' => $data['size_id'],
             ]);
             // attach category to pivot table with product
             $product->categories()->attach($data['category']);
@@ -82,6 +83,6 @@ class ProductsCreate extends Component
     }
     public function render()
     {
-        return view('vendor.products.products-create', ['categories' => Category::all(), 'brands' => Brand::all(), 'colors' => Color::all()]);
+        return view('vendor.products.products-create');
     }
 }

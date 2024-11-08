@@ -42,4 +42,7 @@ class Product extends Model
     {
         return $this->morphOne(Discount::class, 'discountable');
     }
+    public function size(){
+        return $this->belongsTo(Size::class);
+    }
 }

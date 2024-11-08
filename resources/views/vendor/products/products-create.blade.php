@@ -45,6 +45,15 @@
                 <x-input-error :messages="$errors->get('photos.*')" class="mt-2" />
             </div>
             <div class="col-6 mt-3">
+                <label for="size">Size:</label>
+                <select name="" class="form-control" id="size" wire:model='size'>
+                    @foreach ($sizes as $size)
+                    <option value="{{$size->id }}">{{ $size->size }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('color')" class="mt-2" />
+            </div>
+            <div class="col-6 mt-3">
                 <label for="color">Color:</label>
                 <select name="" class="form-control" id="color" wire:model='color'>
                     @foreach ($colors as $color)
