@@ -28,6 +28,6 @@ class ColorsCreate extends Component
     }
     public function render()
     {
-        return view('admin.colors.colors-create', ['color' => Color::all()]);
+        return view('admin.colors.colors-create');
     }
 }

@@ -12,7 +12,7 @@
         <div class="card-body">
             @livewire('admin.sizes.sizes-data')
         </div>
-        {{-- @livewire('admin.sizes.sizes-create') --}}
+        @livewire('admin.sizes.sizes-create')
     </div>
 
     <!-- / Content -->

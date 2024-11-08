@@ -72,7 +72,7 @@
         });
     });
     document.addEventListener('livewire:init', () => {
-        Livewire.on('createColor', (event) => {
+        Livewire.on('createSize', (event) => {
             $('#createSizeModal').modal('toggle');
         });
     });
