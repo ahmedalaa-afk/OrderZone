@@ -95,6 +95,26 @@ class ProductController extends Controller
         return view('user.shop', compact('total', 'products'));
     }
 
+    public function getdepartmentProducts($key)
+    {
+        if ($key == 'all') {
+
+            $products = Product::all();
+        } else {
+
+            $categories = Category::whereHas('department',function($query) use ($key) {
+                $query->where('name',$key);
+            })->get();
+
+            $products = Product::whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('name', $categories->pluck('name')->toArray());
+            })->get();
+        }
+        $total = $this->cartService->getToalCartPrice();
+
+        return view('user.shop', compact('total', 'products'));
+    }
+
 
 
     /**

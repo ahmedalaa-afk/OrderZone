@@ -28,6 +28,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         Route::resource('/', HomeController::class);
         Route::get('/shop', 'shop')->name('shop');
         Route::get('/categories/{category}', [ProductController::class,'getCategoryProducts'])->name('getCategoryProducts');
+        Route::get('/department/{department}', [ProductController::class,'getdepartmentProducts'])->name('getdepartmentProducts');
         Route::post('/products/filter', [ProductController::class,'filterProducts'])->name('filterProducts');
         Route::get('/blog', 'blog')->name('blog');
         Route::get('/contact', 'contact')->name('contact');

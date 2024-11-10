@@ -137,7 +137,7 @@
                     <ul class="depart-hover">
                         @foreach ($departments as $department)
                         <li>
-                            <a href="#">{{ str($department->name)->replace('-', ' ')->title() }}</a>
+                            <a href="{{route('user.getdepartmentProducts', ['department' => $department->name ])}}">{{ str($department->name)->replace('-', ' ')->title() }}</a>
                         </li>
 
                         @endforeach
@@ -148,13 +148,6 @@
                 <ul>
                     <li class="@yield('active-home')"><a href="{{ route('user.index') }}">Home</a></li>
                     <li class="@yield('active-shop')"><a href="{{ route('user.shop') }}">Shop</a></li>
-                    <li class="@yield('active-collection')"><a href="#">Collection</a>
-                        <ul class="dropdown">
-                            <li class="@yield('active-collection')"><a href="#">Men's</a></li>
-                            <li class="@yield('active-collection')"><a href="#">Women's</a></li>
-                            <li class="@yield('active-collection')"><a href="#">Kid's</a></li>
-                        </ul>
-                    </li>
                     <li class="@yield('active-blog')"><a href="{{ route('user.blog') }}">Blog</a></li>
                     <li @yield('active-contact')><a href="{{ route('user.contact') }}">Contact</a></li>
                 </ul>
