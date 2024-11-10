@@ -77,6 +77,11 @@
         });
     });
     document.addEventListener('livewire:init', () => {
+        Livewire.on('createTag', (event) => {
+            $('#createTagModal').modal('toggle');
+        });
+    });
+    document.addEventListener('livewire:init', () => {
         Livewire.on('deleteCategoryModal', (event) => {
             $('#deleteModal').modal('toggle');
         });

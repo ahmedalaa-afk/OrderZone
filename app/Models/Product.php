@@ -45,4 +45,7 @@ class Product extends Model
     public function size(){
         return $this->belongsTo(Size::class);
     }
+    public function tag(){
+        return $this->belongsTo(Tag::class);
+    }
 }

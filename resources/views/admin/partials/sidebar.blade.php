@@ -118,6 +118,12 @@
                 <div data-i18n="Analytics">Colors</div>
             </a>
         </li>
+        <li class="menu-item mt-3 @yield('tags-active')">
+            <a href="{{ route('admin.tags') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-category'></i>
+                <div data-i18n="Analytics">Tags</div>
+            </a>
+        </li>
         @endrole
     </ul>
 </aside>

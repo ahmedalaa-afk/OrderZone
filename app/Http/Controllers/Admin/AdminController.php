@@ -72,5 +72,9 @@ class AdminController extends Controller
     {
         return view('admin.sizes');
     }
+    public function tags()
+    {
+        return view('admin.tags');
+    }
 
 }

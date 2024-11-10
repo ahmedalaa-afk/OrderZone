@@ -100,13 +100,9 @@
                 <div class="filter-widget">
                     <h4 class="fw-title">Tags</h4>
                     <div class="fw-tags">
-                        <a href="#">Towel</a>
-                        <a href="#">Shoes</a>
-                        <a href="#">Coat</a>
-                        <a href="#">Dresses</a>
-                        <a href="#">Trousers</a>
-                        <a href="#">Men's hats</a>
-                        <a href="#">Backpack</a>
+                        @foreach ($tags as $tag)
+                        <a href="#">{{$tag->tag}}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>
