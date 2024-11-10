@@ -22,7 +22,7 @@ class ProductsCreate extends Component
 {
     use WithFileUploads;
     use makeSlug;
-    public $title, $description, $price, $category, $total, $quantity, $photos, $color, $brand;
+    public $title, $description, $price, $category, $total, $quantity, $photos, $color, $brand,$size;
     public function rules()
     {
         return [
@@ -33,9 +33,9 @@ class ProductsCreate extends Component
             'quantity' => 'required|numeric',
             'photos' => 'required',
             'photos.*' => 'mimes:png,jpg,jpeg',
-            'color' => 'required|string',
             'brand' => 'required|string|exists:brands,id',
-            'color' => 'required|string|exists:colors,id'
+            'color' => 'required|string|exists:colors,id',
+            'size' => 'required|string|min:1|max:2|exists:sizes,id',
         ];
     }
     public function submit()
@@ -53,7 +53,7 @@ class ProductsCreate extends Component
                 'quantity' => $data['quantity'],
                 'vendor_id' => Auth::guard('vendor')->user()->id,
                 'color_id' => $data['color'],
-                'size_id' => $data['size_id'],
+                'size_id' => $data['size'],
             ]);
             // attach category to pivot table with product
             $product->categories()->attach($data['category']);

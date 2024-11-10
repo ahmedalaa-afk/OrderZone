@@ -31,9 +31,9 @@ class ProductController extends Controller
         $minamount = (float) str_replace(['$', ','], '', $minamount);
         $maxamount = (float) str_replace(['$', ','], '', $maxamount);
 
-
         $selectedBrandNames = $request->input('brands', []);
         $selectedColor = $request->input('color');
+        $selectedSize = $request->input('size');
 
         $query = Product::query();
 
@@ -49,11 +49,15 @@ class ProductController extends Controller
                 $query->where('color', $selectedColor);
             });
         }
+        if(!empty($request->input('size'))){
+            $query->whereHas('size', function ($query) use ($selectedSize) {
+                $query->where('size', $selectedSize);
+            });
+        }
 
         
 
         $products = $query->get();
-
 
         $brands = Brand::all();
         $colors = Color::all();

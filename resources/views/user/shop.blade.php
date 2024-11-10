@@ -85,28 +85,18 @@
 
                         </div>
                     </div>
-                </form>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Size</h4>
-                    <div class="fw-size-choose">
-                        <div class="sc-item">
-                            <input type="radio" id="s-size">
-                            <label for="s-size">s</label>
-                        </div>
-                        <div class="sc-item">
-                            <input type="radio" id="m-size">
-                            <label for="m-size">m</label>
-                        </div>
-                        <div class="sc-item">
-                            <input type="radio" id="l-size">
-                            <label for="l-size">l</label>
-                        </div>
-                        <div class="sc-item">
-                            <input type="radio" id="xs-size">
-                            <label for="xs-size">xs</label>
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Size</h4>
+                        <div class="fw-size-choose">
+                            @foreach ($sizes as $size)
+                            <div class="sc-item">
+                                <input type="radio" id="{{$size->size}}-size" name="size" value="{{$size->size}}">
+                                <label for="{{$size->size}}-size">{{$size->size}}</label>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="filter-widget">
                     <h4 class="fw-title">Tags</h4>
                     <div class="fw-tags">

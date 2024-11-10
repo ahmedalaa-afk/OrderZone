@@ -12,6 +12,9 @@ class SizesData extends Component
     public function UpdateingSearch(){
         $this->resetPage();
     }
+    public function deleteSize($id){
+        dd($id);
+    }
     public function render()
     {
         $sizes = Size::where('size', 'like', '%' . $this->search . '%')->paginate(10);

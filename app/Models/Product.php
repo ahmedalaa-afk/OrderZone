@@ -9,7 +9,7 @@ use App\Models\Vendor;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'price', 'total', 'quantity', 'slug', 'vendor_id','color_id'];
+    protected $fillable = ['title', 'description', 'price', 'total', 'quantity', 'slug', 'vendor_id','color_id','size_id'];
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
