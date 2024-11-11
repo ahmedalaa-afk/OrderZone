@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css') }}/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{ asset('css') }}/style.css" type="text/css">
     @livewireStyles
-    @vite(['resources/js/app.js', 'resources/css/style.css'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/js/main.js', 'resources/css/style.css'])
 
 </head>

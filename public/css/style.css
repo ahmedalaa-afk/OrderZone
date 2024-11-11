@@ -1947,6 +1947,18 @@ ol {
 .filter-widget .fw-color-choose .cs-item label.cs-green:before {
     background: #81d742;
 }
+.filter-widget .fw-color-choose .cs-item label.cs-white:before {
+    background: #ffffff;
+}
+.filter-widget .fw-color-choose .cs-item label.cs-braun:before {
+    background: #694646;
+}
+.filter-widget .fw-color-choose .cs-item label.cs-pink:before {
+    background: #d0108a;
+}
+.filter-widget .fw-color-choose .cs-item label.cs-purpel:before {
+    background: #e700c4;
+}
 
 .filter-widget .fw-color-choose .cs-item label:before {
     position: absolute;

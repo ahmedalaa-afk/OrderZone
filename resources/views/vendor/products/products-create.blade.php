@@ -62,6 +62,15 @@
                 </select>
                 <x-input-error :messages="$errors->get('color')" class="mt-2" />
             </div>
+            <div class="col-6 mt-3">
+                <label for="tag">Tag:</label>
+                <select name="" class="form-control" id="tag" wire:model='tag'>
+                    @foreach ($tags as $tag)
+                    <option value="{{$tag->id }}">{{ $tag->tag }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('color')" class="mt-2" />
+            </div>
 
             <div class="col-6 mt-3">
                 <label for="quantity">Quantity:</label>

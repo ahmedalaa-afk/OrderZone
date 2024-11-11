@@ -27,9 +27,10 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
     Route::middleware(['auth'])->group(function () {
         Route::resource('/', HomeController::class);
         Route::get('/shop', 'shop')->name('shop');
+        Route::post('/products/filter', [ProductController::class,'filterProducts'])->name('filterProducts');
         Route::get('/categories/{category}', [ProductController::class,'getCategoryProducts'])->name('getCategoryProducts');
         Route::get('/department/{department}', [ProductController::class,'getdepartmentProducts'])->name('getdepartmentProducts');
-        Route::post('/products/filter', [ProductController::class,'filterProducts'])->name('filterProducts');
+        Route::get('/Tag/{tag}', [ProductController::class,'getTagProducts'])->name('getTagProducts');
         Route::get('/blog', 'blog')->name('blog');
         Route::get('/contact', 'contact')->name('contact');
     });

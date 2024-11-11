@@ -34,6 +34,7 @@ class ProductController extends Controller
         $selectedBrandNames = $request->input('brands', []);
         $selectedColor = $request->input('color');
         $selectedSize = $request->input('size');
+        $selectedTag = $request->input('tag');
 
         $query = Product::query();
 
@@ -44,18 +45,18 @@ class ProductController extends Controller
                 $query->whereIn('name', $selectedBrandNames);
             });
         }
-        if(!empty($request->input('color'))){
+        if (!empty($request->input('color'))) {
             $query->whereHas('color', function ($query) use ($selectedColor) {
                 $query->where('color', $selectedColor);
             });
         }
-        if(!empty($request->input('size'))){
+        if (!empty($request->input('size'))) {
             $query->whereHas('size', function ($query) use ($selectedSize) {
                 $query->where('size', $selectedSize);
             });
         }
 
-        
+
 
         $products = $query->get();
 
@@ -65,9 +66,7 @@ class ProductController extends Controller
         $total = $this->cartService->getToalCartPrice();
 
         return view('user.shop', [
-            'brands' => $brands,
             'products' => $products,
-            'colors' => $colors,
             'total' => $total,
             'selectedBrandNames' => $selectedBrandNames,
             'minamount' => $minamount,
@@ -102,14 +101,24 @@ class ProductController extends Controller
             $products = Product::all();
         } else {
 
-            $categories = Category::whereHas('department',function($query) use ($key) {
-                $query->where('name',$key);
+            $categories = Category::whereHas('department', function ($query) use ($key) {
+                $query->where('name', $key);
             })->get();
 
             $products = Product::whereHas('categories', function ($query) use ($categories) {
                 $query->whereIn('name', $categories->pluck('name')->toArray());
             })->get();
         }
+        $total = $this->cartService->getToalCartPrice();
+
+        return view('user.shop', compact('total', 'products'));
+    }
+
+    public function getTagProducts($key)
+    {
+        $products = Product::whereHas('tag', function ($query) use ($key) {
+            $query->where('tag', $key);
+        })->get();
         $total = $this->cartService->getToalCartPrice();
 
         return view('user.shop', compact('total', 'products'));

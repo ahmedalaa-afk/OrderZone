@@ -96,16 +96,16 @@
                             @endforeach
                         </div>
                     </div>
-                </form>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Tags</h4>
-                    <div class="fw-tags">
-                        @foreach ($tags as $tag)
-                        <a href="#">{{$tag->tag}}</a>
-                        @endforeach
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Tags</h4>
+                        <div class="fw-tags">
+                            @foreach ($tags as $tag)
+                            <a href="{{route('user.getTagProducts',['tag'=>$tag->tag])}}">{{$tag->tag}}</a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
             </div>
+            </form>
             <div class="col-lg-9 order-1 order-lg-2">
                 @if (count($products) > 0)
                 <div class="product-list">
