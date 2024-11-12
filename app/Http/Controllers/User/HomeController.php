@@ -40,13 +40,10 @@ class HomeController extends Controller
         $total = $this->cartService->getToalCartPrice();
         return view('user.shop', compact('total', 'products','colors'));
     }
-    public function blog()
-    {
-        return view('user.blog');
-    }
     public function contact()
     {
-        return view('user.contact');
+        $total = $this->cartService->getToalCartPrice();
+        return view('user.contact', compact('total'));
     }
 
     /**

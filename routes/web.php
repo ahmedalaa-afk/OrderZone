@@ -31,7 +31,6 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         Route::get('/categories/{category}', [ProductController::class,'getCategoryProducts'])->name('getCategoryProducts');
         Route::get('/department/{department}', [ProductController::class,'getdepartmentProducts'])->name('getdepartmentProducts');
         Route::get('/Tag/{tag}', [ProductController::class,'getTagProducts'])->name('getTagProducts');
-        Route::get('/blog', 'blog')->name('blog');
         Route::get('/contact', 'contact')->name('contact');
     });
 });
