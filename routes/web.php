@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BrandController;
+use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProfileController;
@@ -27,11 +27,16 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
     Route::middleware(['auth'])->group(function () {
         Route::resource('/', HomeController::class);
         Route::get('/shop', 'shop')->name('shop');
-        Route::post('/products/filter', [ProductController::class,'filterProducts'])->name('filterProducts');
-        Route::get('/categories/{category}', [ProductController::class,'getCategoryProducts'])->name('getCategoryProducts');
-        Route::get('/department/{department}', [ProductController::class,'getdepartmentProducts'])->name('getdepartmentProducts');
-        Route::get('/Tag/{tag}', [ProductController::class,'getTagProducts'])->name('getTagProducts');
-        Route::get('/contact', 'contact')->name('contact');
+        Route::controller(ProductController::class)->group(function () {
+            Route::post('/products/filter',  'filterProducts')->name('filterProducts');
+            Route::get('/categories/{category}',  'getCategoryProducts')->name('getCategoryProducts');
+            Route::get('/department/{department}',  'getdepartmentProducts')->name('getdepartmentProducts');
+            Route::get('/Tag/{tag}',  'getTagProducts')->name('getTagProducts');
+        });
+        Route::controller(ContactController::class)->group(function(){
+            Route::post('/store', 'store')->name('contact.store');
+            Route::get('/contact', 'contact')->name('contact');
+        });
     });
 });
 Route::middleware(['auth'])->group(function () {
@@ -40,5 +45,3 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__ . '/auth.php';
-
-

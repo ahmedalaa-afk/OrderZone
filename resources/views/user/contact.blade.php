@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                    <a href="{{route('user.index')}}"><i class="fa fa-home"></i> Home</a>
                     <span>Contact</span>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="ci-text">
                             <span>Address:</span>
-                            <p>60-49 Road 11378 New York</p>
+                            <p>{{env('app_country')}}</p>
                         </div>
                     </div>
                     <div class="cw-item">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="ci-text">
                             <span>Email:</span>
-                            <p>hellocolorlib@gmail.com</p>
+                            <p>{{env('app_name')}}</p>
                         </div>
                     </div>
                 </div>
@@ -76,18 +76,29 @@
             <div class="col-lg-6 offset-lg-1">
                 <div class="contact-form">
                     <div class="leave-comment">
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+                        @if(session('error'))
+                        <div class="alert alert-error">
+                            {{ session('error') }}
+                        </div>
+                        @endif
                         <h4>Leave A Comment</h4>
                         <p>Our staff will call back later and answer your questions.</p>
-                        <form action="#" class="comment-form">
+                        <form action="{{route('user.contact.store')}}" method="POST" class="comment-form">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Your name">
+                                    <input type="text" placeholder="Your name" name="name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Your email">
+                                    <input type="text" placeholder="Your email" name="email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Your message"></textarea>
+                                    <textarea placeholder="Your message" name="message"></textarea>
                                     <button type="submit" class="site-btn">Send message</button>
                                 </div>
                             </div>
