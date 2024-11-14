@@ -59,3 +59,10 @@ window.Echo.channel("new-announcement-to-vendor").listen(
 
   }
 );
+window.Echo.channel("user-send-contact-notification").listen(
+  "UserSendContactNotification", function (data) {
+    $("#notification-item").load('#notification-item > *');
+    Livewire.dispatch('refreshContacts');
+
+  }
+);

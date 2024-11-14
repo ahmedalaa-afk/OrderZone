@@ -36,7 +36,7 @@
                 <div data-i18n="Analytics">Users</div>
             </a>
         </li>
-        <li class="menu-item mt-3 @yield('contacts-active')">
+        <li class="menu-item mt-3 @yield('user-contacts-active')">
             <a href="{{ route('admin.userContacts') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
                 <div data-i18n="Analytics" class="notification" id="notification-item">
