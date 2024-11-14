@@ -21,8 +21,6 @@ class AdminController extends Controller
         $this->middleware(['check_role:vendor_manager'])->only(['vendors']);
         // Product Manager
         $this->middleware(['check_role:product_manager'])->only(['categories']);
-        // User Manager
-        $this->middleware(['check_role:user_manager'])->only(['users']);
     }
     public function index()
     {
@@ -31,10 +29,6 @@ class AdminController extends Controller
     public function settings()
     {
         return view('admin.settings');
-    }
-    public function users()
-    {
-        return view('admin.users');
     }
     public function vendors()
     {

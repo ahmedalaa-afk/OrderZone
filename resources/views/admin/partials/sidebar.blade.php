@@ -36,6 +36,18 @@
                 <div data-i18n="Analytics">Users</div>
             </a>
         </li>
+        <li class="menu-item mt-3 @yield('contacts-active')">
+            <a href="{{ route('admin.userContacts') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
+                <div data-i18n="Analytics" class="notification" id="notification-item">
+                    User Contacts <span id="notification-counter" class="text-danger">
+                        @if (count(Auth::guard('admin')->user()->unreadNotifications) > 0)
+                        +{{count(Auth::guard('admin')->user()->unreadNotifications)}}
+                        @endif
+                    </span>
+                </div>
+            </a>
+        </li>
         @endrole
         {{-- Vendor Manager --}}
         @role('vendor_manager', 'admin')
@@ -45,8 +57,6 @@
                 <div data-i18n="Analytics">Vendors</div>
             </a>
         </li>
-        @endrole
-        @role('vendor_manager','admin')
         <li class="menu-item mt-3 @yield('notifications-active')">
             <a href="{{ route('admin.notifications') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
@@ -59,8 +69,6 @@
                 </div>
             </a>
         </li>
-        @endrole
-        @role('vendor_manager','admin')
         <li class="menu-item mt-3 @yield('announces-active')">
             <a href="{{ route('admin.announcements') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-bell-ring bx-tada-hover' undefined></i>
