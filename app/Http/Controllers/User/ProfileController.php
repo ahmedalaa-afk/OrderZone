@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Services\CartService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+
+    protected $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+        $this->middleware(['auth', 'checkUserStatus']);
+    }
     /**
      * Display the user's profile form.
      */
@@ -19,6 +28,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'total' => $this->cartService->getToalCartPrice(),
         ]);
     }
 
