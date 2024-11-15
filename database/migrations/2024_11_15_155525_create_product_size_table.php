@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('color_id')->nullable()->constrained()->onDelete('cascade');
+        Schema::create('product_size', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('size_id')->constrained();
+            $table->integer('quantity')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -21,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['color_id']);
-            $table->dropColumn('color_id');
-        });
+        Schema::dropIfExists('product_size');
     }
 };

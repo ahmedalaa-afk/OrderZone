@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Color extends Model
 {
-    protected $fillable=['color'];
+    protected $fillable = ['color'];
     use HasFactory;
-    public function products(){
-        $this->hasMany(Product::class);
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class)->withPivot('quantity')->withTimestamps();
+    }
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class)->withPivot('quantity')->withTimestamps();
     }
 }
