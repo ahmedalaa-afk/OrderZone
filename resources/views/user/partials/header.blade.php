@@ -68,9 +68,10 @@
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
                         <li class="heart-icon">
-                            <a href="#">
+                            <a href="{{route('user.wishlist')}}">
                                 <i class="icon_heart_alt"></i>
-                                <span>1</span>
+                                <span>{{ Auth::user()->wishlist ? Auth::user()->wishlist->products->count() : 0 }}</span>
+
                             </a>
                         </li>
                         <li class="cart-icon">
@@ -78,7 +79,7 @@
                                 <i class="icon_bag_alt"></i>
                                 <span>
                                     @if (isset(Auth::user()->carts))
-                                        {{count(Auth::user()->carts)}}
+                                    {{count(Auth::user()->carts)}}
                                     @endif
                                 </span>
                             </a>
@@ -89,7 +90,8 @@
                                             @if (isset(Auth::user()->carts))
                                             @foreach (Auth::user()->carts as $cart)
                                             <tr>
-                                                <td class="si-pic"><img src="{{Storage::url($cart->product->photos->first()->photo)}}"
+                                                <td class="si-pic"><img
+                                                        src="{{Storage::url($cart->product->photos->first()->photo)}}"
                                                         alt="" width="100"></td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
@@ -131,7 +133,8 @@
                     <ul class="depart-hover">
                         @foreach ($departments as $department)
                         <li>
-                            <a href="{{route('user.getdepartmentProducts', ['department' => $department->name ])}}">{{ str($department->name)->replace('-', ' ')->title() }}</a>
+                            <a href="{{route('user.getdepartmentProducts', ['department' => $department->name ])}}">{{
+                                str($department->name)->replace('-', ' ')->title() }}</a>
                         </li>
 
                         @endforeach
