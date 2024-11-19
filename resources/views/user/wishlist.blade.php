@@ -18,14 +18,27 @@
 <!-- Breadcrumb Section Begin -->
 
 <!-- Product Shop Section Begin -->
+
+<!-- Session Status -->
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
+
 <section class="product-shop spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 order-1 order-lg-2">
-                @if (count($wishlists) > 0)
+                @if (count($products) > 0)
                 <div class="product-list">
                     <div class="row">
-                        @foreach ($wishlists as $wishlist)
+                        @foreach ($products as $product)
                         <div class="col-lg-4 col-sm-6">
                             <div class="product-item">
                                 <div class="pi-pic">
@@ -37,7 +50,7 @@
                                     <ul>
                                         <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
                                         <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        <li class="w-icon"><a href="#"><i class='bx bx-folder-minus'></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">

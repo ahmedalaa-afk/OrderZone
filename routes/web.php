@@ -4,7 +4,7 @@ use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\WishListController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,10 +38,10 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
             Route::post('/store', 'store')->name('contact.store');
             Route::get('/', 'contact')->name('contact');
         });
-        Route::prefix('wishlist')->controller(WishListController::class)->group(function(){
-            Route::get("wishlist",'index')->name('wishlist');;
-            Route::post('/add/{id}', 'AddWithlist')->name('add');
-            Route::post('/remove/{id}', 'RemoveWithlist')->name('remove');
+        Route::prefix('wishlist')->name('wishlist.')->controller(WishlistController::class)->group(function(){
+            Route::get("wishlist",'index')->name('index');
+            Route::get('/add/{product_id}', 'AddToWishlist')->name('add');
+            Route::post('/remove/{id}', 'RemoveFromWishlist')->name('remove');
         });
     });
 });

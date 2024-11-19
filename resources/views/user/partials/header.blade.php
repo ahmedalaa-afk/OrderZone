@@ -68,7 +68,7 @@
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
                         <li class="heart-icon">
-                            <a href="{{route('user.wishlist')}}">
+                            <a href="{{route('user.wishlist.index')}}">
                                 <i class="icon_heart_alt"></i>
                                 <span>{{ Auth::user()->wishlist ? Auth::user()->wishlist->products->count() : 0 }}</span>
 
