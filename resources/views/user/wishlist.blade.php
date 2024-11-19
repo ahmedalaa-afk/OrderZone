@@ -44,13 +44,17 @@
                                 <div class="pi-pic">
                                     <img src="{{Storage::url($product->photos->first()->photo)}}" alt="">
                                     <div class="sale pp-sale">Sale</div>
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
+                                    <a href="{{route('user.wishlist.add',['product_id' => $product->id])}}">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                    </a>
                                     <ul>
                                         <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
                                         <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class='bx bx-folder-minus'></i></a></li>
+                                        <li class="w-icon"><a
+                                                href="{{route('user.wishlist.remove',['product_id' => $product->id])}}"><i
+                                                    class='bx bx-folder-minus'></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">

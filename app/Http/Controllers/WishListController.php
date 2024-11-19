@@ -31,17 +31,32 @@ class WishlistController extends Controller
         $wishlist = $user->wishlist ?? $user->wishlist()->create();
 
         $product = Product::where('id', $product_id)->first();
-
+        $total = $this->cartService->getToalCartPrice();
+        $products = Auth::user()->wishlist->products;
         if ($user->wishlist->products->contains($product->id)) {
-            $products = Auth::user()->wishlist->products;
-            $total = $this->cartService->getToalCartPrice();
 
             return to_route('user.wishlist.index', compact('products', 'total'))->with('error', 'Product already in wishlist!');
-        }
-        else {
+        } else {
 
             $wishlist->products()->attach($product->id);
-            return to_route('user.wishlist.index', compact('products'))->with('success', 'Product added to wishlist successfully!');
+            return to_route('user.wishlist.index', compact('products','total'))->with('success', 'Product added to wishlist successfully!');
+        }
+    }
+    public function RemoveFromWishlist($product_id)
+    {
+        $user = Auth::user();
+        $wishlist = $user->wishlist ?? $user->wishlist()->create();
+
+        $product = Product::where('id', $product_id)->first();
+        $products = Auth::user()->wishlist->products;
+        $total = $this->cartService->getToalCartPrice();
+        if (!$user->wishlist->products->contains($product->id)) {
+
+            return to_route('user.wishlist.index', compact('products', 'total'))->with('error', 'Product is not in wishlist!');
+        } else {
+
+            $wishlist->products()->detach($product->id);
+            return to_route('user.wishlist.index', compact('products','total'))->with('success', 'Product removed to wishlist successfully!');
         }
     }
 }

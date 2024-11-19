@@ -41,7 +41,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         Route::prefix('wishlist')->name('wishlist.')->controller(WishlistController::class)->group(function(){
             Route::get("wishlist",'index')->name('index');
             Route::get('/add/{product_id}', 'AddToWishlist')->name('add');
-            Route::post('/remove/{id}', 'RemoveFromWishlist')->name('remove');
+            Route::get('/remove/{product_id}', 'RemoveFromWishlist')->name('remove');
         });
     });
 });

@@ -29,7 +29,9 @@
                     </li>
 
                     <li class="quick-view"><a href="#">+ Quick View</a></li>
-                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                    <li class="w-icon"><a href="{{route('user.wishlist.remove',['product_id' => $product->id])}}">
+                            <i class="fa-solid fa-square-minus"></i>
+                        </a></li>
                 </ul>
             </div>
             <div class="pi-text">
