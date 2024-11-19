@@ -4,34 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\WishList;
+use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WishListController extends Controller
 {
+
+    protected $cartService;
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+        $this->middleware(['auth', 'checkUserStatus']);
+    }
     public function index()
     {
         $wishlists = WishList::where('user_id', auth()->user()->id)->get();
-        dd($wishlists);
-        return view('user.wishlist', compact('wishlists'));
+        $total = $this->cartService->getToalCartPrice();
+
+        return view('user.wishlist', compact('wishlists', 'total'));
     }
 
-    public function AddWithlist(Request $request)
+    public function AddToWishlist($product_id)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-        ]);
-
         $user = Auth::user();
-
-        // Ensure the user has a wishlist
         $wishlist = $user->wishlist ?? $user->wishlist()->create();
 
-        $product = Product::findOrFail($request->product_id);
+        $product = Product::where('id', $product_id)->first();
 
-        // Attach the product to the user's wishlist
-        $wishlist->products()->syncWithoutDetaching($product->id);
+        if ($product) {
 
-        return to_route('user.wishlist')->with('success','Product added to wishlist successfully!');
+            $wishlist->products()->attach($product->id);
+            return to_route('user.wishlist')->with('success', 'Product added to wishlist successfully!');
+        }
     }
 }
