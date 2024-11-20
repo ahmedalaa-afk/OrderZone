@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'product_slug','quantity'];
+    protected $fillable = ['user_id'];
 
-    public function product()
+    public function products()
     {
-        return $this->hasOne(Product::class, 'slug', 'product_slug');
+        return $this->belongsToMany(Product::class)->withPivot('quantity')->withTimestamps();
     }
 
     public function user()

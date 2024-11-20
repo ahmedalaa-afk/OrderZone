@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController;
@@ -42,6 +43,11 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
             Route::get("wishlist",'index')->name('index');
             Route::get('/add/{product_id}', 'AddToWishlist')->name('add');
             Route::get('/remove/{product_id}', 'RemoveFromWishlist')->name('remove');
+        });
+        Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function(){
+            Route::get("wishlist",'index')->name('index');
+            Route::get('/add/{slug}', 'addToCart')->name('add');
+            Route::get('/remove/{slug}', 'RemoveFromWCart')->name('remove');
         });
     });
 });

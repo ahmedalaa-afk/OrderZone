@@ -70,16 +70,17 @@
                         <li class="heart-icon">
                             <a href="{{route('user.wishlist.index')}}">
                                 <i class="icon_heart_alt"></i>
-                                <span>{{ Auth::user()->wishlist ? Auth::user()->wishlist->products->count() : 0 }}</span>
+                                <span>{{ Auth::user()->wishlist ? Auth::user()->wishlist->products->count() : 0
+                                    }}</span>
 
                             </a>
                         </li>
                         <li class="cart-icon">
-                            <a href="#">
+                            <a href="{{route('user.cart.index')}}">
                                 <i class="icon_bag_alt"></i>
                                 <span>
-                                    @if (isset(Auth::user()->carts))
-                                    {{count(Auth::user()->carts)}}
+                                    @if (Auth::check() && Auth::user()->cart && Auth::user()->cart->products)
+                                    {{ count(Auth::user()->cart->products) }}
                                     @endif
                                 </span>
                             </a>
@@ -87,16 +88,18 @@
                                 <div class="select-items">
                                     <table>
                                         <tbody>
-                                            @if (isset(Auth::user()->carts))
-                                            @foreach (Auth::user()->carts as $cart)
+                                            @if (Auth::check() && Auth::user()->cart &&
+                                            Auth::user()->cart->products->isNotEmpty())
+                                            @foreach (Auth::user()->cart->products as $product)
                                             <tr>
-                                                <td class="si-pic"><img
-                                                        src="{{Storage::url($cart->product->photos->first()->photo)}}"
-                                                        alt="" width="100"></td>
+                                                <td class="si-pic">
+                                                    <img src="{{ Storage::url($product->photos->first()->photo) }}"
+                                                        alt="" width="100">
+                                                </td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
-                                                        <p>${{$cart->product->total}}</p>
-                                                        <h6>{{$cart->product->title}}</h6>
+                                                        <p>${{ $product->pivot->quantity * $product->price }}</p>
+                                                        <h6>{{ $product->title }}</h6>
                                                     </div>
                                                 </td>
                                                 <td class="si-close">
@@ -105,6 +108,7 @@
                                             </tr>
                                             @endforeach
                                             @endif
+
                                         </tbody>
                                     </table>
                                 </div>

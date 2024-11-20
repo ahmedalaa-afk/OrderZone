@@ -20,7 +20,7 @@ class WomenProducts extends Component
 
         $this->products = Product::whereHas('categories', function ($query) {
             $query->whereIn('name', $this->categories->pluck('name'));
-        })->get();        
+        })->get();
     }
     public function filterProducts($key)
     {
@@ -32,24 +32,28 @@ class WomenProducts extends Component
     }
     public function addToCart($slug)
     {
-
         $user = Auth::user();
-        $product = Product::where('slug', $slug)->first();
-        // Add product to cart...
-        if ($product) {
-            $product_exist = Cart::where('product_slug', $product->slug)->first();
-            if ($product_exist) {
-                $product_exist->quantity += 1;
-                $product_exist->save();
-            } else {
 
-                Cart::create([
-                    'product_slug' => $product->slug,
-                    'user_id' => $user->id,
-                ]);
-            }
+        // Find the product by slug
+        $product = Product::where('slug', $slug)->first();
+
+        if (!$product) {
+            return to_route('user.cart.index');
+        }
+
+        $cart = Cart::firstOrCreate(['user_id' => $user->id]);
+
+        $existingProduct = $cart->products()->where('product_id', $product->id)->first();
+
+        if ($existingProduct) {
+            $cart->products()->updateExistingPivot($product->id, [
+                'quantity' => $existingProduct->pivot->quantity + 1,
+            ]);
+        } else {
+            $cart->products()->attach($product->id, ['quantity' => 1]);
         }
     }
+
     public function render()
     {
         return view('user.products.women-products', [
