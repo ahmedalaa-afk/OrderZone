@@ -54,4 +54,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Wishlist::class, 'product_wishlist')->withTimestamps();
     }
+    public function checkouts()
+    {
+        return $this->belongsToMany(Checkout::class, 'checkout_product')
+            ->withPivot('quantity', 'price')
+            ->withTimestamps();
+    }
 }
