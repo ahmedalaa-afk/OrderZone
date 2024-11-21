@@ -150,6 +150,7 @@
                     <li class="@yield('active-home')"><a href="{{ route('user.index') }}">Home</a></li>
                     <li class="@yield('active-shop')"><a href="{{ route('user.shop') }}">Shop</a></li>
                     <li @yield('active-contact')><a href="{{ route('user.contact') }}">Contact</a></li>
+                    <li @yield('active-checkout')><a href="{{ route('user.checkout.index') }}">Checkout</a></li>
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
