@@ -23,6 +23,6 @@ class CheckoutController extends Controller
     }
 
     public function checkout(CheckoutRequest $request){
-        dd($request->all());
+        
     }
 }

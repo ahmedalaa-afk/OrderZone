@@ -28,10 +28,28 @@ class CheckoutRequest extends FormRequest
             'country' => 'required|string',
             'fstreet' => 'required|string',
             'sstreet' => 'nullable|string',
+            'coupon' => 'nullable|string',
             'city' => 'required|string',
             'zip' => 'required|string',
             'email' => 'required|string',
             'phone' => 'required|string',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'fname' => 'First Name',
+            'lname' => 'Last Name',
+            'company' => 'Company Name',
+            'country' => 'Country Name',
+            'fstreet' => 'First Address',
+            'sstreet' => 'Second Address',
+            'city' => 'City Name',
+            'zip' => 'Zip Code',
+            'email' => 'Email Address',
+            'phone' => 'Phone Number',
+            'coupon' => 'Coupon'
         ];
     }
 }
