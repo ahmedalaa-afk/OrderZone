@@ -41,17 +41,18 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
             Route::get('/', 'contact')->name('contact');
         });
         Route::prefix('wishlist')->name('wishlist.')->controller(WishlistController::class)->group(function(){
-            Route::get("wishlist",'index')->name('index');
+            Route::get("/",'index')->name('index');
             Route::get('/add/{product_id}', 'AddToWishlist')->name('add');
             Route::get('/remove/{product_id}', 'RemoveFromWishlist')->name('remove');
         });
         Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function(){
-            Route::get("wishlist",'index')->name('index');
+            Route::get("/",'index')->name('index');
             Route::get('/add/{slug}', 'addToCart')->name('add');
             Route::get('/remove/{slug}', 'RemoveFromWCart')->name('remove');
         });
         Route::prefix('checkout')->name('checkout.')->controller(CheckoutController::class)->group(function(){
-            Route::get("checkout",'index')->name('index');
+            Route::get("/",'index')->name('index');
+            Route::post("checkout/order",'checkout')->name('checkout');
         });
     });
 });

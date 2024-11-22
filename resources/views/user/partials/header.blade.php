@@ -117,8 +117,8 @@
                                     <h5>${{$total}}</h5>
                                 </div>
                                 <div class="select-button">
-                                    <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="{{route('user.cart.index')}}" class="primary-btn view-card">VIEW CARD</a>
+                                    <a href="{{route('user.checkout.index')}}" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
                         </li>
