@@ -16,13 +16,33 @@ class CheckoutController extends Controller
         $this->middleware(['auth', 'checkUserStatus']);
     }
 
-    public function index(){
-        $products = Auth::user()->cart->products;
+    public function index()
+    {
         $total = $this->cartService->getToalCartPrice();
-        return view('user.checkout',compact('total','products'));
+        $products = Auth::user()->cart->products;
+        return view('user.checkout', compact('total', 'products'));
     }
 
-    public function checkout(CheckoutRequest $request){
-        
+    public function checkout(CheckoutRequest $request)
+    {
+        $user = Auth::user();
+
+        $total = $this->cartService->getToalCartPrice();
+
+        $products = $user->cart->products;
+
+        $order = $user->orders()->create([
+            'total' => $total,
+        ]);
+
+        foreach ($products as $product) {
+            $order->products()->attach($product->id, [
+                'quantity' => $product->pivot->quantity,
+                'price' => $product->total,
+            ]);
+        }
+
+
+        return view('user.checkout', compact('products', 'total'));
     }
 }
