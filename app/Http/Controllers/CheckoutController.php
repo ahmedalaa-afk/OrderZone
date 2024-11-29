@@ -43,6 +43,6 @@ class CheckoutController extends Controller
         }
 
 
-        return view('user.checkout', compact('products', 'total'));
+        return to_route('user.payment.stripe.paymentIntent.create',compact('order'));
     }
 }

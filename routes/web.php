@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\HomeController;
@@ -53,6 +54,10 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         Route::prefix('checkout')->name('checkout.')->controller(CheckoutController::class)->group(function(){
             Route::get("/",'index')->name('index');
             Route::post("checkout/order",'checkout')->name('checkout');
+        });
+        Route::prefix('payment')->name('payment.')->controller(PaymentsController::class)->group(function(){
+            Route::get("order/{order}/stripe/payment-intent",'createStripePaymentIntent')->name('stripe.paymentIntent.create');
+            Route::get('success','StripePaymentSuccess')->name('stripe.paymentSuccess');
         });
     });
 });

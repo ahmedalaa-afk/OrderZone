@@ -22,7 +22,7 @@
 <section class="checkout-section spad">
     <div class="container">
         @if (count($products) > 0)
-        <form action="{{route('user.checkout.checkout')}}" method="POST" class="checkout-form">
+        <form action="{{ route('user.checkout.checkout') }}" method="POST" class="checkout-form">
             @csrf
             <div class="row">
                 <div class="col-lg-6">
