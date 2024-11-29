@@ -42,7 +42,10 @@ class CheckoutController extends Controller
             ]);
         }
 
+        $user = auth()->user();
+        $user->cart->clearCart();
 
-        return to_route('user.payment.stripe.paymentIntent.create',compact('order'));
+
+        return to_route('user.payment.stripe.paymentIntent.create', compact('order'));
     }
 }

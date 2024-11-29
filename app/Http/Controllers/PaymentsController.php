@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Services\CartService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
 {
@@ -42,7 +43,7 @@ class PaymentsController extends Controller
         return redirect($session->url);
     }
 
-    public function StripePaymentSuccess(){
+    public function StripePaymentSuccess(Order $order){
         $total = $this->cartService->getToalCartPrice();
         return view('user.payments_success',compact('total'));
     }
