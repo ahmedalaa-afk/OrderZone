@@ -35,9 +35,11 @@ class OrderController extends Controller
 
     public function filterOrders(Request $request)
     {
-        $orders = Auth::user()->orders()->find($request->status);
-        dd(
-            $orders
-        );
+        if($request->status == 'all'){
+            return to_route('user.order.index');
+        }
+        $orders = Auth::user()->orders()->where('status',$request->status)->paginate(4);   
+        $total = $this->cartService->getToalCartPrice();
+        return view('user.order', compact('total', 'orders'));
     }
 }

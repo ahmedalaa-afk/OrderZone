@@ -29,10 +29,11 @@
                     <div class="d-flex align-items-center">
                         <label for="filter" class="me-2 fw-bold">Filter by Status:</label>
                         <select name="status" id="filter" class="form-select w-auto">
-                            <option value="" {{ request('status') == '' ? 'selected' : '' }}>All</option>
-                            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                            <option value="all" {{ request('status') == '' ? 'selected' : '' }}>All</option>
+                            <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                            <option value="failed" {{ request('status') == 'failed' ? 'selected' : '' }}>Failed</option>
                             <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                            <option value="canceled" {{ request('status') == 'canceled' ? 'selected' : '' }}>Canceled</option>
+                            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                         </select>
                         <button type="submit" class="btn btn-primary ms-3">Apply</button>
                     </div>
