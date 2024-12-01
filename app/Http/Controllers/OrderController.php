@@ -33,13 +33,21 @@ class OrderController extends Controller
         return redirect()->route('user.order.index')->with('error', 'Failed to cancel the order');
     }
 
-    public function filterOrders(Request $request)
+    public function proccessPayment(Request $request)
     {
-        if($request->status == 'all'){
+        if ($request->status == 'all') {
             return to_route('user.order.index');
         }
-        $orders = Auth::user()->orders()->where('status',$request->status)->paginate(4);   
+        $orders = Auth::user()->orders()->where('status', $request->status)->cursorPaginate(4);
         $total = $this->cartService->getToalCartPrice();
         return view('user.order', compact('total', 'orders'));
+    }
+    public function orderDetails($id)
+    {
+        $order = Auth::user()->orders()->find($id);
+        if ($order) {
+            return to_route('user.payment.stripe.paymentIntent.create',compact('order'));
+        }
+        return redirect()->route('user.order.index')->with('error', 'Failed to get order details');
     }
 }

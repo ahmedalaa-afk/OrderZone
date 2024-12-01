@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\Department;
 use App\Models\Size;
 use App\Models\Tag;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
         view()->share('sizes',Size::all());
         view()->share('colors',Color::all());
         view()->share('tags',Tag::all());
+
+
+        Paginator::useBootstrapFive();
     }
 }

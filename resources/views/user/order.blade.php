@@ -82,10 +82,10 @@
                                     @endforeach
                                 </ul>
                                 <div class="d-flex justify-content-between">
-                                    <a href="{{route('user.order.details', ['id' => $order->id])}}" class="btn btn-primary btn-sm">
-                                        View Details
-                                    </a>
                                     @if ($order->status != 'cancelled')
+                                    <a href="{{route('user.order.proccess.payment', ['id' => $order->id])}}" class="btn btn-primary btn-sm">
+                                        Proccess Payment
+                                    </a>
                                     <a href="{{route('user.order.cancel', ['id' => $order->id])}}" 
                                         class="btn btn-danger btn-sm">
                                          Cancel Order
@@ -98,7 +98,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-center">
-                    {{$orders->links('pagination::bootstrap-5')}}
+                    {{$orders->appends(request()->query())->links()}}
                 </div>
                 @else
                 <div class="text-center">

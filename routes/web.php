@@ -58,7 +58,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         });
         Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function(){
             Route::get("/",'index')->name('index');
-            Route::get("/details",'orderDetails')->name('details');
+            Route::get("/{id}/payment",'proccessPayment')->name('proccess.payment');
             Route::get("/{id}/cancel",'orderCancel')->name('cancel');
             Route::get("filter",'filterOrders')->name('filter');
         });
