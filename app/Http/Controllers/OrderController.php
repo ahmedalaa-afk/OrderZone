@@ -33,7 +33,7 @@ class OrderController extends Controller
         return redirect()->route('user.order.index')->with('error', 'Failed to cancel the order');
     }
 
-    public function proccessPayment(Request $request)
+    public function filterOrders(Request $request)
     {
         if ($request->status == 'all') {
             return to_route('user.order.index');
@@ -42,7 +42,7 @@ class OrderController extends Controller
         $total = $this->cartService->getToalCartPrice();
         return view('user.order', compact('total', 'orders'));
     }
-    public function orderDetails($id)
+    public function proccessPayment($id)
     {
         $order = Auth::user()->orders()->find($id);
         if ($order) {
