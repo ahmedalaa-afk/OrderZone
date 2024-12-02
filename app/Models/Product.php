@@ -9,7 +9,7 @@ use App\Models\Vendor;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'price', 'total', 'slug', 'quantity', 'vendor_id', 'tag_id'];
+    protected $fillable = ['title', 'description', 'price', 'total', 'slug', 'quantity', 'vendor_id', 'tag_id','color_id'];
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
@@ -26,9 +26,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductPhotos::class);
     }
-    public function products()
+    public function color()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity')->withTimestamps();
+        return $this->belongsTo(Color::class);
     }
     public function brands()
     {

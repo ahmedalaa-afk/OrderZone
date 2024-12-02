@@ -9,9 +9,9 @@ class Color extends Model
 {
     protected $fillable = ['color'];
     use HasFactory;
-    public function colors()
+    public function products()
     {
-        return $this->belongsToMany(Color::class)->withPivot('quantity')->withTimestamps();
+        return $this->hasMany(Product::class);
     }
     public function sizes()
     {

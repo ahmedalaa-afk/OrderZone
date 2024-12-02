@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('quantity')->unsigned();
             $table->enum('status',['accepted','not_accepted'])->default('not_accepted');
             $table->foreignId('vendor_id')->constrained('vendors');
+            $table->foreignId('color_id')->constrained('colors');
+            $table->foreignId('tag_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

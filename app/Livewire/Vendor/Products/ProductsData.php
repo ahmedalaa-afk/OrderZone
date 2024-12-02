@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class ProductsData extends Component
 {
     use WithPagination;
-    protected $listeners = ['refreshProducts' => '$refresh','deleteProduct'];
+    protected $listeners = ['refreshProducts' => '$refresh','deleteProduct','editProduct'];
     public $search;
 
     public function UpdatingSearch()
@@ -21,6 +21,9 @@ class ProductsData extends Component
         $product->photos()->delete();
         $product->delete();
         $this->dispatch('refreshProducts');
+    }
+    public function editProduct($slug){
+        $this->dispatch('editProductModal',['slug' => $slug]);
     }
 
     public function render()

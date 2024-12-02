@@ -53,6 +53,7 @@ class ProductsCreate extends Component
                 'total' => $data['price'],
                 'quantity' => $data['quantity'],
                 'vendor_id' => Auth::guard('vendor')->user()->id,
+                'color_id' => $data['color'],
                 'tag_id' => $data['tag'],
             ]);
             // attach category to pivot table with product

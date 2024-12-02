@@ -30,6 +30,11 @@
         });
     });
     document.addEventListener('livewire:init', () => {
+        Livewire.on('editProductModal', (event) => {
+            $('#editModal').modal('toggle');
+        });
+    });
+    document.addEventListener('livewire:init', () => {
         Livewire.on('createDiscountModal', (event) => {
             $('#discountModal').modal('toggle');
         });

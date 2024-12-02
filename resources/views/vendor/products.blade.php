@@ -16,6 +16,7 @@
         @livewire('vendor.products.products-data')
     </div>
     @livewire('vendor.products.products-create')
+    @livewire('vendor.products.products-edit')
     @livewire('vendor.products.discounts-create')
 </div>
 <!-- / Content -->
