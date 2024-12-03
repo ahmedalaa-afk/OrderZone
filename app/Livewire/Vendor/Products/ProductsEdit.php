@@ -14,55 +14,69 @@ class ProductsEdit extends Component
     use WithFileUploads;
     use makeSlug;
     protected $listeners = ['editProduct'];
-    public $slug, $product;
+    public $product;
     public $title, $description, $price, $category, $total, $quantity, $photos, $color, $brand, $size, $tag;
     public function editProduct($slug)
     {
-        $this->slug = $slug;
-        $this->product = Product::where('slug', $this->slug)->first();
+        $this->product = Product::where('slug', $slug)->first();
         if ($this->product) {
             $this->title = $this->product->title;
             $this->description = $this->product->description;
             $this->price = $this->product->price;
             $this->category = $this->product->categories->pluck('id')->toArray();
-            $this->color = $this->product->colors;
-            $this->brand = $this->product->brand->id;
-            $this->size = $this->product->size->id;
-            $this->tag = $this->product->tag->id;
-            $this->photos = ProductPhotos::where('product_id', $this->product->id)->get();
+            $this->color = $this->product->color_id;
+            $this->brand = $this->product->brand_id;
+            $this->size = $this->product->size_id;
+            $this->tag = $this->product->tag_id;
+            $this->photos = $this->product->photos;
+            $this->quantity = $this->product->quantity;
         }
+
+        $this->resetValidation();
+        $this->dispatch('editProductModal');
     }
     public function rules()
     {
         return [
-            'product.title' => 'nullable|min:5',
-            'product.description' => 'nullable|min:10',
-            'product.category' => 'nullable|string',
-            'product.price' => 'nullable|numeric',
-            'product.quantity' => 'nullable|numeric',
-            'product.photos' => 'nullable',
-            'product.photos.*' => 'mimes:png,jpg,jpeg',
-            'product.brand' => 'nullable|string|exists:brands,id',
-            'product.color' => 'nullable|string|exists:colors,id',
-            'product.size' => 'nullable|string|min:1|max:2|exists:sizes,id',
-            'product.tag' => 'nullable|string|exists:tags,id',
+            'title' => 'nullable',
+            'description' => 'nullable',
+            'category' => 'nullable',
+            'price' => 'nullable',
+            'quantity' => 'nullable',
+            'photos' => 'nullable',
+            'photos.*' => 'nullable',
+            'brand' => 'nullable',
+            'color' => 'nullable',
+            'size' => 'nullable',
+            'tag' => 'nullable',
         ];
     }
+    public function messages()
+    {
+        return [
+            'photos.*' => 'The photo field is required',
+        ];
+    }
+
     public function submit()
     {
-        $data = $this->validate($this->rules());
+        $data = $this->validate($this->rules(), $this->messages());
         if ($data) {
-            // Update Product
+            // update Product
             $this->product->update([
-                'title' => $data['title'],
-                'slug' => $this->slug,
-                'description' => $data['description'],
-                'price' => $data['price'],
-                'total' => $data['price'],
-                'quantity' => $data['quantity'],
-                'vendor_id' => Auth::guard('vendor')->user()->id,
-                'tag_id' => $data['tag'],
+                'title' => $data['title'] ?? $this->product->title,
+                'slug' => $this->product->slug,
+                'description' => $data['description'] ?? $this->product->description,
+                'price' => $data['price'] ?? $this->product->price,
+                'total' => $data['price'] ?? $this->product->total,
+                'quantity' => $data['quantity'] ?? $this->product->quantity,
+                'vendor_id' => $this->product->vendor_id,
+                'color_id' => $data['color'] ?? $this->product->color_id,
+                'tag_id' => $data['tag'] ?? $this->product->tag_id,
+                'size_id' => $data['size'] ?? $this->product->size_id,
+                'brand_id' => $data['brand'] ?? $this->product->brand_id,
             ]);
+            dd($data);
             // attach category to pivot table with product
             $this->product->categories()->attach($data['category']);
             // Photo Upload
@@ -81,13 +95,12 @@ class ProductsEdit extends Component
         // Product Brand
         $this->product->brands()->attach($data['brand']);
 
-        $this->reset(['title', 'description', 'price', 'total', 'category', 'quantity', 'photos']);
-        $this->dispatch('editProduct');
+        $this->reset(['title', 'description', 'price', 'total', 'category', 'quantity', 'photos', 'tag', 'color', 'size', 'brand']);
+        $this->dispatch('editProductModal');
         $this->dispatch('refreshProducts')->to(ProductsData::class);
     }
     public function render()
     {
-        $this->product = Product::where('slug', $this->slug)->first();
-        return view('vendor.products.products-edit', ['product' => $this->product]);
+        return view('vendor.products.products-edit');
     }
 }

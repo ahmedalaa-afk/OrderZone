@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('vendor_id')->constrained('vendors');
             $table->foreignId('color_id')->constrained('colors');
             $table->foreignId('tag_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('size_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

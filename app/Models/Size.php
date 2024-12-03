@@ -11,7 +11,7 @@ class Size extends Model
     use HasFactory;
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity')->withTimestamps();
+        return $this->hasMany(Product::class);
     }
     public function colors()
     {

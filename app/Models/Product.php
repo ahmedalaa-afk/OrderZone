@@ -42,9 +42,9 @@ class Product extends Model
     {
         return $this->morphOne(Discount::class, 'discountable');
     }
-    public function sizes()
+    public function size()
     {
-        return $this->belongsToMany(Size::class)->withPivot('quantity')->withTimestamps();
+        return $this->belongsTo(Size::class);
     }
     public function tag()
     {
