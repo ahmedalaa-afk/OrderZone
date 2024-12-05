@@ -10,7 +10,7 @@ trait Filtering
 {
     public function getCategoryProducts($key){
         return Product::whereHas('categories', function ($query) use ($key){
-            $query->where('name', $key);
+            $query->where('name', $key)->where('status','accepted');
         })->get();
     }
 }

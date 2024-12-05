@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $product = Product::whereHas('discounts')->first();
+        $product = Product::whereHas('discounts')->where('status','accepted')->first();
         $total = $this->cartService->getToalCartPrice();
         return view('user.index', compact('product', 'total'));
     }

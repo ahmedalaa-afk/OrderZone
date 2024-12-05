@@ -19,7 +19,7 @@ class WomenProducts extends Component
         $this->categories = Category::where('name', 'like', 'women%')->get();
 
         $this->products = Product::whereHas('categories', function ($query) {
-            $query->whereIn('name', $this->categories->pluck('name'));
+            $query->whereIn('name', $this->categories->pluck('name'))->where('status','accepted');
         })->get();
     }
     public function filterProducts($key)
