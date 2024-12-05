@@ -36,9 +36,19 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#"
-                                    wire:click.prevent="$emit('deleteCategory', { id: {{ $category->id }} })">
+                                    wire:click.prevent="$dispatch('deleteCategory', { id: {{ $category->id }} })">
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
+                                @if ($category->deleted_at)
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('deleteCategory', { id: {{ $category->id }} })">
+                                    <i class="bx bx-trash me-1"></i> Delete
+                                </a>
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('restoreCategory', { id: {{ $category->id }} })">
+                                    <i class="bx bx-refresh me-1"></i> Restore
+                                </a>
+                                @endif
                             </div>
                         </div>
                     </td>

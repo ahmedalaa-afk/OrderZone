@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class CategoriesData extends Component
 {
     use WithPagination;
-    public $listeners = ['refreshCategories' => '$refresh'];
+    public $listeners = ['refreshCategories' => '$refresh','restoreCategory'];
     public $search = '';
     public $showArchived = false;
 
@@ -28,6 +28,10 @@ class CategoriesData extends Component
     {
         $this->showArchived = false;
         $this->resetPage();
+    }
+
+    public function restoreCategory($id){
+        Category::where('id', $id)->restore();
     }
 
     public function render()
