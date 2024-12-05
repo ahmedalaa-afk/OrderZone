@@ -1,7 +1,17 @@
 <div>
     <div class="mb-3">
-        <input type="search" class="form-control w-25" wire:model.live="search" id="" placeholder="Search...">
+        <input type="search" class="form-control w-25 d-inline me-3" wire:model.live="search" placeholder="Search...">
+        @if ($showArchived)
+        <button class="btn btn-primary" wire:click="showActiveCategories">
+            Active Categories <i class="bx bx-list-ul me-1"></i>
+        </button>
+        @else
+        <button type="submit" class="btn btn-secondary" wire:click="showArchivedCategories">
+            Archived Categories <i class="bx bx-trash me-1"></i>
+        </button>
+        @endif
     </div>
+
     @if (count($categories) > 0)
     <div class="table-responsive text-nowrap">
         <table class="table">
@@ -26,7 +36,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#"
-                                    wire:click.prevent="$dispatch('deleteCategory', { id: {{ $category->id }} })">
+                                    wire:click.prevent="$emit('deleteCategory', { id: {{ $category->id }} })">
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
                             </div>

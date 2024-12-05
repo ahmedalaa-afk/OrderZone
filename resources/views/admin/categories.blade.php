@@ -8,6 +8,7 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCategoryModal">
             New Category
         </button>
+
     </div>
     <div class="card-body">
         @livewire('admin.categories.categories-data')
