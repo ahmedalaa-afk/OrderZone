@@ -35,7 +35,7 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $products = Product::all();
+        $products = Product::where('status','accepted')->get();
         $colors = Color::all();
         $total = $this->cartService->getToalCartPrice();
         return view('user.shop', compact('total', 'products','colors'));

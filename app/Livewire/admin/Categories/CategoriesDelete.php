@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Categories;
 
 use App\Models\Category;
+use App\Models\Product;
 use Livewire\Component;
 
 class CategoriesDelete extends Component
@@ -17,6 +18,14 @@ class CategoriesDelete extends Component
     public function submit()
     {
         if ($this->category) {
+            $products = Product::whereHas('categories', function ($query) {
+                $query->where('name', $this->category->name);
+            })->get();
+
+            foreach ($products as $product) {
+                $product->categories()->detach();
+            }
+
             $this->category->delete();
             $this->reset(['category']);
             $this->dispatch('deleteCategoryModal');

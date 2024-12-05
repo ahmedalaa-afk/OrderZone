@@ -58,10 +58,7 @@ class ProductController extends Controller
 
 
 
-        $products = $query->get();
-
-        $brands = Brand::all();
-        $colors = Color::all();
+        $products = $query->where('status','accepted')->get();
 
         $total = $this->cartService->getToalCartPrice();
 
@@ -79,13 +76,13 @@ class ProductController extends Controller
     {
         if ($key == 'all') {
 
-            $products = Product::all();
+            $products = Product::where('status','accepted')->get();
         } else {
 
             $categories = Category::where('name', 'like', $key . '%')->get();
 
             $products = Product::whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('name', $categories->pluck('name')->toArray());
+                $query->whereIn('name', $categories->pluck('name')->toArray())->where('status','accepted');
             })->get();
         }
 
@@ -98,7 +95,7 @@ class ProductController extends Controller
     {
         if ($key == 'all') {
 
-            $products = Product::all();
+            $products = Product::where('status','accepted');
         } else {
 
             $categories = Category::whereHas('department', function ($query) use ($key) {
@@ -106,7 +103,7 @@ class ProductController extends Controller
             })->get();
 
             $products = Product::whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('name', $categories->pluck('name')->toArray());
+                $query->whereIn('name', $categories->pluck('name')->toArray())->where('status','accepted');
             })->get();
         }
         $total = $this->cartService->getToalCartPrice();
@@ -117,7 +114,7 @@ class ProductController extends Controller
     public function getTagProducts($key)
     {
         $products = Product::whereHas('tag', function ($query) use ($key) {
-            $query->where('tag', $key);
+            $query->where('tag', $key)->where('status','accepted');
         })->get();
         $total = $this->cartService->getToalCartPrice();
 
