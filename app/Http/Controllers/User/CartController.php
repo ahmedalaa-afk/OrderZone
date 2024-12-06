@@ -27,37 +27,57 @@ class CartController extends Controller
     {
         $user = Auth::user();
 
-        // Retrieve the user's cart
         $cart = $user->cart;
 
-        // Ensure the user has a cart
         if (!$cart) {
             return back()->with('error', 'Cart not found.');
         }
 
-        // Find the product by slug
         $product = Product::where('slug', $slug)->first();
 
-        // Ensure the product exists
         if (!$product) {
             return back()->with('error', 'Product not found.');
         }
 
-        // Check if the product is already in the cart
         $existingProduct = $cart->products()
             ->where('product_id', $product->id)
             ->first();
 
         if ($existingProduct) {
-            // Update the quantity if the product already exists
             $cart->products()->updateExistingPivot($product->id, [
                 'quantity' => $existingProduct->pivot->quantity + 1
             ]);
             return to_route('user.cart.index')->with('success', 'Product quantity updated in your cart.');
         }
 
-        // Add the product to the cart with a default quantity of 1
         $cart->products()->attach($product->id, ['quantity' => 1]);
         return to_route('user.cart.index')->with('success', 'Product added to your cart.');
+    }
+
+    public function removeFromCart($slug)
+    {
+        $user = Auth::user();
+
+        $cart = $user->cart;
+
+        if (!$cart) {
+            return back()->with('error', 'Cart not found.');
+        }
+
+        $product = Product::where('slug', $slug)->first();
+
+        if (!$product) {
+            return back()->with('error', 'Product not found.');
+        }
+        $existingProduct = $cart->products()
+            ->where('product_id', $product->id)
+            ->first();
+
+        if ($existingProduct) {
+            $cart->products()->updateExistingPivot($product->id, [
+                'quantity' => $existingProduct->pivot->quantity - 1
+            ]);
+            return to_route('user.cart.index')->with('success', 'Product quantity updated in your cart.');
+        }
     }
 }

@@ -50,7 +50,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function(){
             Route::get("/",'index')->name('index');
             Route::post('/add/{slug}', 'addToCart')->name('add');
-            Route::post('/remove/{slug}', 'RemoveFromWCart')->name('remove');
+            Route::post('/remove/{slug}', 'removeFromCart')->name('remove');
         });
         Route::prefix('checkout')->name('checkout.')->controller(CheckoutController::class)->group(function(){
             Route::get("/",'index')->name('index');

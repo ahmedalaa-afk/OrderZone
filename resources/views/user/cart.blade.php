@@ -104,14 +104,14 @@
                     </ul>
                     <a href="{{ route('user.checkout.index') }}" class="btn btn-primary btn-block">Proceed to
                         Checkout</a>
-                    <a href="{{ route('user.index') }}" class="btn btn-secondary btn-block mt-2">Continue Shopping</a>
+                    <a href="{{ route('user.shop') }}" class="btn btn-secondary btn-block mt-2">Continue Shopping</a>
                 </div>
             </div>
         </div>
         @else
         <div class="text-center py-5">
             <h4 class="text-danger">Your cart is empty.</h4>
-            <a href="{{ route('user.index') }}" class="btn btn-secondary mt-3">Continue Shopping</a>
+            <a href="{{ route('user.shop') }}" class="btn btn-secondary mt-3">Continue Shopping</a>
         </div>
         @endif
     </div>
