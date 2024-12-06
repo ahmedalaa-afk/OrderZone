@@ -31,6 +31,9 @@
                         <div class="col-lg-6">
                             <label for="fir">First Name<span>*</span></label>
                             <input type="text" id="fir" name="fname">
+                            @error('fname')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="col-lg-6">
                             <label for="last">Last Name<span>*</span></label>

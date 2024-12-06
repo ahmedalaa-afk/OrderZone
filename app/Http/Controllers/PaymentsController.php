@@ -22,6 +22,7 @@ class PaymentsController extends Controller
         $session = $stripe->checkout->sessions->create([
             'success_url' => 'http://orderzone.com:8080/user/payment/success',
             'cancel_url' => 'https://example.com/cancel',
+            'mode' => 'payment',
             'line_items' => $order->products->map(function ($product) {
                 return [
                     'price_data' => [
@@ -30,21 +31,22 @@ class PaymentsController extends Controller
                             'name' => $product->title,
                             'images' => [$product->photos->first()->photo],
                         ],
-                        'unit_amount' => $product->pivot->price * 100,
+                        'unit_amount' => (int)($product->pivot->price * 100),
+
                     ],
                     'quantity' => $product->pivot->quantity,
                 ];
             })->toArray(),
 
-            'mode' => 'payment',
 
         ]);
 
         return redirect($session->url);
     }
 
-    public function StripePaymentSuccess(Order $order){
+    public function StripePaymentSuccess(Order $order)
+    {
         $total = $this->cartService->getToalCartPrice();
-        return view('user.payments_success',compact('total'));
+        return view('user.payments_success', compact('total'));
     }
 }

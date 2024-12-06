@@ -49,8 +49,8 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
         });
         Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function(){
             Route::get("/",'index')->name('index');
-            Route::get('/add/{slug}', 'addToCart')->name('add');
-            Route::get('/remove/{slug}', 'RemoveFromWCart')->name('remove');
+            Route::post('/add/{slug}', 'addToCart')->name('add');
+            Route::post('/remove/{slug}', 'RemoveFromWCart')->name('remove');
         });
         Route::prefix('checkout')->name('checkout.')->controller(CheckoutController::class)->group(function(){
             Route::get("/",'index')->name('index');
