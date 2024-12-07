@@ -86,10 +86,10 @@
                                     <a href="{{route('user.order.proccess.payment', ['id' => $order->id])}}" class="btn btn-primary btn-sm">
                                         Proccess Payment
                                     </a>
-                                    <a href="{{route('user.order.cancel', ['id' => $order->id])}}" 
-                                        class="btn btn-danger btn-sm">
-                                         Cancel Order
-                                     </a>
+                                    <form action="{{route('user.order.cancel', ['id' => $order->id])}}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">Cancel Order</button>
+                                     </form>
                                     @endif
                                 </div>
                             </div>

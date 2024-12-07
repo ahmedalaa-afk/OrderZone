@@ -11,7 +11,8 @@ class AnnouncementsData extends Component
     protected $listeners = ['refreshVendorAnnouncements' => '$refresh'];
     public function render()
     {
-        $notifications = Auth::guard('vendor')->user()->unreadNotifications()->where('data->key','announcement')->paginate(10);
-        return view('vendor.announcements.announcements-data',['notifications' => $notifications]);
+        $notifications = Auth::guard('vendor')->user()->unreadNotifications()->where('data->key', 'announcement')->paginate(10);
+        $notifications->markAsRead();
+        return view('vendor.announcements.announcements-data', ['notifications' => $notifications]);
     }
 }

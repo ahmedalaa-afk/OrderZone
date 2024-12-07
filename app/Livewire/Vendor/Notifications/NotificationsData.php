@@ -20,6 +20,8 @@ class NotificationsData extends Component
             ->where('data->key','notification')
             ->paginate(10);
 
+        $notifications->markAsRead();
+
         return view('vendor.notifications.notifications-data', ['notifications' => $notifications]);
     }
 }
