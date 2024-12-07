@@ -31,6 +31,7 @@ class CategoriesSearch extends Component
     {
         $this->search = $suggestion;
         $this->suggestions = [];
+        return to_route('user.getCategoryProducts',['category' => $suggestion]);
     }
 
     public function render()

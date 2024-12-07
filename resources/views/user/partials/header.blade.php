@@ -98,7 +98,7 @@
                                                 </td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
-                                                        <p>${{ $product->pivot->quantity * $product->price }}</p>
+                                                        <p>${{ $product->pivot->quantity * $product->price }} (x{{ $product->pivot->quantity}})</p>
                                                         <h6>{{ $product->title }}</h6>
                                                     </div>
                                                 </td>
