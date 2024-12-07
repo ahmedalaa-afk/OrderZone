@@ -92,13 +92,22 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Your name" name="name">
+                                    <input type="text" placeholder="Your name" name="name" value="{{old('name')}}">
+                                    @error('name')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Your email" name="email">
+                                    <input type="text" placeholder="Your email" name="email" value="{{old('email')}}">
+                                    @error('email')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Your message" name="message"></textarea>
+                                    <textarea placeholder="Your message" name="message" value="{{old('message')}}"></textarea>
+                                    @error('message')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                     <button type="submit" class="site-btn">Send message</button>
                                 </div>
                             </div>
