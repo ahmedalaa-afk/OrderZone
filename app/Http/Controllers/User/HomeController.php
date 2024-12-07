@@ -40,6 +40,10 @@ class HomeController extends Controller
         $total = $this->cartService->getToalCartPrice();
         return view('user.shop', compact('total', 'products','colors'));
     }
+    public function routeFallback(){
+        $total = $this->cartService->getToalCartPrice();
+        return view('user.fallback',compact('total'));
+    }
 
     /**
      * Show the form for creating a new resource.

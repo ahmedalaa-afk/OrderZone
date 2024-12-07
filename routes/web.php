@@ -67,7 +67,10 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
             Route::get('success','StripePaymentSuccess')->name('stripe.paymentSuccess');
         });
     });
+    
+    Route::fallback('routeFallback');
 });
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
