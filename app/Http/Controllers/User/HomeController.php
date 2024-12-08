@@ -20,7 +20,7 @@ class HomeController extends Controller
     public function __construct(CartService $cartService)
     {
         $this->cartService = $cartService;
-        $this->middleware(['auth', 'checkUserStatus']);
+        $this->middleware(['checkUserStatus']);
     }
 
     /**

@@ -14,6 +14,7 @@
         @livewire('admin.categories.categories-data')
     </div>
     @livewire('admin.categories.categories-create')
+    @livewire('admin.categories.categories-update')
     @livewire('admin.categories.categories-delete')
 </div>
 <!-- / Content -->

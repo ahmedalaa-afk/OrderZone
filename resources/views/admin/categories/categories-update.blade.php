@@ -1,4 +1,4 @@
-<x-show-modal id="createCategoryModal" title="New Category">
+<x-show-modal id="updateCategoryModal" title="Update Category">
     <form wire:submit.prevent="submit" method="post">
         <div class="row">
             <div class="col-6">
@@ -11,7 +11,8 @@
                 <select name="parent" class="form-control" id="Category" wire:model="parent_id">
                     <option value="null">Select Parent Category</option>
                     @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" @selected($category->id == $this->parent_id)>{{ $category->name
+                        }}</option>
                     @endforeach
                 </select>
                 @include('admin.error', ['property' => 'parent_id'])
@@ -21,7 +22,8 @@
                 <select name="department" class="form-control" id="Department" wire:model="department_id">
                     <option value="null">Select Department</option>
                     @foreach ($departments as $department)
-                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    <option value="{{ $department->id }}" @selected($department->id == $this->department_id)>{{
+                        $department->name }}</option>
                     @endforeach
                 </select>
                 @include('admin.error', ['property' => 'department_id'])

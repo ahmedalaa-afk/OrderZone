@@ -39,6 +39,10 @@
                                     wire:click.prevent="$dispatch('deleteCategory', { id: {{ $category->id }} })">
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('editCategory', { id: {{ $category->id }} })">
+                                    <i class="bx bx-edit me-1"></i> Edit
+                                </a>
                                 @if ($category->deleted_at)
                                 <a class="dropdown-item" href="#"
                                     wire:click.prevent="$dispatch('deleteCategory', { id: {{ $category->id }} })">

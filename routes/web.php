@@ -66,8 +66,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
             Route::get("order/{order}/stripe/payment-intent",'createStripePaymentIntent')->name('stripe.paymentIntent.create');
             Route::get('success','StripePaymentSuccess')->name('stripe.paymentSuccess');
         });
-    });
-    
+    });    
     Route::fallback('routeFallback');
 });
 
