@@ -13,6 +13,7 @@
             @livewire('admin.colors.colors-data')
         </div>
         @livewire('admin.colors.colors-create')
+        @livewire('admin.colors.colors-delete')
     </div>
 
     <!-- / Content -->
