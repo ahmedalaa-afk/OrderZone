@@ -72,6 +72,11 @@
         });
     });
     document.addEventListener('livewire:init', () => {
+        Livewire.on('updateBrand', (event) => {
+            $('#updateBrandModal').modal('toggle');
+        });
+    });
+    document.addEventListener('livewire:init', () => {
         Livewire.on('createDepartment', (event) => {
             $('#createDepartmentModal').modal('toggle');
         });
