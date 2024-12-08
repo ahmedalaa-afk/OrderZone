@@ -17,7 +17,7 @@ class SizesData extends Component
     }
     public function render()
     {
-        $sizes = Size::where('size', 'like', '%' . $this->search . '%')->paginate(10);
+        $sizes = Size::where('name', 'like', '%' . $this->search . '%')->paginate(10);
         return view('admin.sizes.sizes-data', compact('sizes'));
     }
 }

@@ -1,4 +1,4 @@
-<x-show-modal id="createSizeModal" title="New Size">
+<x-show-modal id="updateSizeModal" title="Update Size">
     <form wire:submit.prevent="submit" method="post">
         <div class="row">
             <div class="col-6">
@@ -13,7 +13,7 @@
                 </button>
                 <button type="submit" class="btn btn-primary">
                     <span class="text-center" wire:loading.remove>
-                        Create
+                        Update
                     </span>
                     <div class="text-center" wire:loading wire:target='submit'>
                         <span class="spinner-border spinner-border-sm text-white" role="status">

@@ -13,6 +13,7 @@
             @livewire('admin.sizes.sizes-data')
         </div>
         @livewire('admin.sizes.sizes-create')
+        @livewire('admin.sizes.sizes-update')
         @livewire('admin.sizes.sizes-delete')
     </div>
 

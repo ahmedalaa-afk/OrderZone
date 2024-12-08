@@ -7,22 +7,22 @@ use Livewire\Component;
 
 class SizesCreate extends Component
 {
-    public $size;
+    public $name;
     protected $listeners = ['createSize'];
 
     public function rules()
     {
         return [
-            'size' => 'required|string|min:1|max:2|unique:sizes,size',
+            'name' => 'required|string|min:1|max:2|unique:sizes,name',
         ];
     }
     public function submit()
     {
         $this->validate($this->rules());
         Size::create([
-            'size' => $this->size,
+            'name' => $this->name,
         ]);
-        $this->reset(['size']);
+        $this->reset(['name']);
         $this->dispatch('createSize');
         $this->dispatch('refreshSizes')->to(SizesData::class);
     }

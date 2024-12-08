@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('size')->unique();
+            $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
         });
