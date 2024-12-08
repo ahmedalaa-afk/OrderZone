@@ -13,7 +13,7 @@
         @livewire('admin.departments.departments-data')
     </div>
     @livewire('admin.departments.departments-create')
-    {{-- @livewire('admin.categories.categories-delete') --}}
+    @livewire('admin.departments.departments-delete')
 </div>
 <!-- / Content -->
 @endsection
