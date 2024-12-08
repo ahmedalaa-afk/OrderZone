@@ -132,6 +132,11 @@
         });
     });
     document.addEventListener('livewire:init', () => {
+        Livewire.on('deleteTagModal', (event) => {
+            $('#deleteModal').modal('toggle');
+        });
+    });
+    document.addEventListener('livewire:init', () => {
         Livewire.on('showProductModal', (event) => {
             $('#showModal').modal('toggle');
         });

@@ -100,7 +100,7 @@
                         <h4 class="fw-title">Tags</h4>
                         <div class="fw-tags">
                             @foreach ($tags as $tag)
-                            <a href="{{route('user.getTagProducts',['tag'=>$tag->tag])}}">{{$tag->tag}}</a>
+                            <a href="{{route('user.getTagProducts',['tag'=>$tag->name])}}">{{$tag->name}}</a>
                             @endforeach
                         </div>
                     </div>

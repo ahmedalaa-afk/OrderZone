@@ -13,6 +13,7 @@
             @livewire('admin.tags.tags-data')
         </div>
         @livewire('admin.tags.tags-create')
+        @livewire('admin.tags.tags-delete')
     </div>
 
     <!-- / Content -->

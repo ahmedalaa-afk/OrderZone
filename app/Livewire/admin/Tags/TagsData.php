@@ -17,7 +17,7 @@ class TagsData extends Component
     }
     public function render()
     {
-        $tags = Tag::where('tag', 'like', '%' . $this->search . '%')->paginate(10);
+        $tags = Tag::where('name', 'like', '%' . $this->search . '%')->paginate(10);
         return view('admin.tags.tags-data', compact('tags'));
     }
 }

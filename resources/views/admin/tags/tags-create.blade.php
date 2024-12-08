@@ -2,9 +2,9 @@
     <form wire:submit.prevent="submit" method="post">
         <div class="row">
             <div class="col-6">
-                <label for="tag">Tag:</label>
-                <input type="text" class="form-control" id="tag" wire:model="tag" wire:model='tag'>
-                @include('admin.error', ['property' => 'tag'])
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" wire:model="name">
+                @include('admin.error', ['property' => 'name'])
             </div>
 
             <div class="modal-footer mt-3">

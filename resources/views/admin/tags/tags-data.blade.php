@@ -13,7 +13,7 @@
             <tbody class="table-border-bottom-0">
                 @foreach ($tags as $tag)
                 <tr>
-                    <td>{{ $tag->tag }}</td>
+                    <td>{{ $tag->name }}</td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -21,7 +21,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#"
-                                    wire:click.prevent="$dispatch('deletetag', { id: {{ $tag->id }} })">
+                                    wire:click.prevent="$dispatch('deleteTag', { id: {{ $tag->id }} })">
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
                             </div>

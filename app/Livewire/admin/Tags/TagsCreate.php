@@ -7,22 +7,22 @@ use Livewire\Component;
 
 class TagsCreate extends Component
 {
-    public $tag;
+    public $name;
     protected $listeners = ['createTag'];
 
     public function rules()
     {
         return [
-            'tag' => 'required|string|unique:tags,tag',
+            'name' => 'required|string|unique:tags,name',
         ];
     }
     public function submit()
     {
         $this->validate($this->rules());
         Tag::create([
-            'tag' => $this->tag,
+            'name' => $this->name,
         ]);
-        $this->reset(['tag']);
+        $this->reset(['name']);
         $this->dispatch('createTag');
         $this->dispatch('refreshTags')->to(TagsData::class);
     }
