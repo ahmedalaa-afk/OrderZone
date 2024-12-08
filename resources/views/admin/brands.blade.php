@@ -13,6 +13,7 @@
             @livewire('admin.brands.brands-data')
         </div>
         @livewire('admin.brands.brands-create')
+        @livewire('admin.brands.brands-Delete')
     </div>
 
     <!-- / Content -->

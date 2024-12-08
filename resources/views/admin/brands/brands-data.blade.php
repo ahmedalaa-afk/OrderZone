@@ -21,7 +21,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#"
-                                    wire:click.prevent="$dispatch('deleteCategory', { id: {{ $brand->id }} })">
+                                    wire:click.prevent="$dispatch('deleteBrand', { id: {{ $brand->id }} })">
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
                             </div>
