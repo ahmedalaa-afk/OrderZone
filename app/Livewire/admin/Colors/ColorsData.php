@@ -14,7 +14,7 @@ class ColorsData extends Component
     }
     public function render()
     {
-        $colors = Color::where('color', 'like', '%' . $this->search . '%')->paginate(10);
+        $colors = Color::where('name', 'like', '%' . $this->search . '%')->paginate(10);
         return view('admin.colors.colors-data', compact('colors'));
     }
 }

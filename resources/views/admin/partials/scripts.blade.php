@@ -122,6 +122,11 @@
         });
     });
     document.addEventListener('livewire:init', () => {
+        Livewire.on('deleteColorModal', (event) => {
+            $('#deleteModal').modal('toggle');
+        });
+    });
+    document.addEventListener('livewire:init', () => {
         Livewire.on('showProductModal', (event) => {
             $('#showModal').modal('toggle');
         });

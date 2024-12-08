@@ -77,8 +77,8 @@
                         <div class="fw-color-choose">
                             @foreach ($colors as $color)
                             <div class="cs-item">
-                                <input type="radio" id="cs-{{$color->color}}" name="color" value="{{ $color->color }}">
-                                <label class="cs-{{$color->color}}" for="cs-{{$color->color}}">{{ $color->color
+                                <input type="radio" id="cs-{{$color->name}}" name="color" value="{{ $color->name }}">
+                                <label class="cs-{{$color->name}}" for="cs-{{$color->name}}">{{ $color->name
                                     }}</label>
                             </div>
                             @endforeach

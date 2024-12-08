@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Color extends Model
 {
-    protected $fillable = ['color'];
-    use HasFactory;
+    protected $fillable = ['name'];
+    use HasFactory,SoftDeletes;
     public function products()
     {
         return $this->hasMany(Product::class);

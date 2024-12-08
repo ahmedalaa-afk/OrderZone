@@ -7,22 +7,22 @@ use Livewire\Component;
 
 class ColorsCreate extends Component
 {
-    public $color;
+    public $name;
     protected $listeners = ['createColor'];
 
     public function rules()
     {
         return [
-            'color' => 'required|string|unique:colors,color',
+            'name' => 'required|string|unique:colors,name',
         ];
     }
     public function submit()
     {
         $this->validate($this->rules());
         Color::create([
-            'color' => $this->color,
+            'name' => $this->name,
         ]);
-        $this->reset(['color']);
+        $this->reset(['name']);
         $this->dispatch('createColor');
         $this->dispatch('refresColors')->to(ColorsData::class);
     }

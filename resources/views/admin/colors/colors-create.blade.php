@@ -2,9 +2,9 @@
     <form wire:submit.prevent="submit" method="post">
         <div class="row">
             <div class="col-6">
-                <label for="color">Color:</label>
-                <input type="text" class="form-control" id="color" wire:model="color" wire:model='color'>
-                @include('admin.error', ['property' => 'color'])
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" wire:model="name" wire:model='name'>
+                @include('admin.error', ['property' => 'name'])
             </div>
 
             <div class="modal-footer mt-3">
