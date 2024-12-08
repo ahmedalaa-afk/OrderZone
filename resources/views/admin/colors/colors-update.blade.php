@@ -1,4 +1,4 @@
-<x-show-modal id="createColorModal" title="New Color">
+<x-show-modal id="updateColorModal" title="Update Color">
     <form wire:submit.prevent="submit" method="post">
         <div class="row">
             <div class="col-6">

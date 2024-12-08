@@ -24,6 +24,10 @@
                                     wire:click.prevent="$dispatch('deleteColor', { id: {{ $color->id }} })">
                                     <i class="bx bx-trash me-1"></i> Delete
                                 </a>
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('editColor', { id: {{ $color->id }} })">
+                                    <i class="bx bx-edit me-1"></i> Edit
+                                </a>
                             </div>
                         </div>
                     </td>
