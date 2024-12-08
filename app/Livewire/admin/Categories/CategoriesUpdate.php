@@ -36,10 +36,6 @@ class CategoriesUpdate extends Component
             'department_id' => $this->department_id,
         ]);
         $this->reset(['name', 'parent_id', 'department_id']);
-        // $products = Product::whereHas('categories',function($query){
-        //     $query->where('name',$this->name);
-        // })->get();
-        // dd($products);
         $this->dispatch('updateCategory');
         $this->dispatch('refreshCategories')->to(CategoriesData::class);
     }
