@@ -13,6 +13,7 @@
         @livewire('admin.departments.departments-data')
     </div>
     @livewire('admin.departments.departments-create')
+    @livewire('admin.departments.departments-update')
     @livewire('admin.departments.departments-delete')
 </div>
 <!-- / Content -->

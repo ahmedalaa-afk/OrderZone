@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-6">
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" wire:model="name">
+                <input type="text" class="form-control" id="name" value="{{$this->name}}" wire:model="name">
                 @include('admin.error', ['property' => 'name'])
             </div>
             <div class="col-6">
