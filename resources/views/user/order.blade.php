@@ -76,7 +76,7 @@
                                 <ul class="list-group list-group-flush mb-3">
                                     @foreach ($order->products as $product)
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <span>{{$product->name}} (x{{$product->pivot->quantity}})</span>
+                                        <span>{{$product->title}} (x{{$product->pivot->quantity}})</span>
                                         <span>${{ number_format($product->pivot->price, 2) }}</span>
                                     </li>
                                     @endforeach

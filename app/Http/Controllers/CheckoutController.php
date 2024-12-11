@@ -20,7 +20,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $total = $this->cartService->getToalCartPrice();
-        $products = Auth::user()->cart->products;
+        $products = Auth::user()->cart->products ?? [];
         return view('user.checkout', compact('total', 'products'));
     }
 

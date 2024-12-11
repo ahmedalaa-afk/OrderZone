@@ -16,7 +16,7 @@ class MenProducts extends Component
     {
         $this->categories = Category::where('name', 'like', 'men%')->get();
 
-        $this->products = Product::whereHas('categories', function ($query) {
+        $this->products = Product::whereHas('category', function ($query) {
             $query->where('status','accepted')->whereIn('name', $this->categories->pluck('name')->toArray());
         })->get();
     }

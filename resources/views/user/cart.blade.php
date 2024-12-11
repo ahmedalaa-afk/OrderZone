@@ -50,7 +50,7 @@
                         <!-- Product Info -->
                         <div class="cart-item-info ms-4 flex-grow-1">
                             <h6>{{ $product->name }}</h6>
-                            <small class="text-muted">{{ $product->categories->first()->name ?? '' }}</small>
+                            <small class="text-muted">{{ $product->category->name ?? '' }}</small>
                             <div class="price mt-2">
                                 ${{ $product->price }}
                             </div>
