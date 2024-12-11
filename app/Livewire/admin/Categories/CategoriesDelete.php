@@ -18,7 +18,7 @@ class CategoriesDelete extends Component
     public function submit()
     {
         if ($this->category) {
-            $products = Product::whereHas('categories', function ($query) {
+            $products = Product::whereHas('category', function ($query) {
                 $query->where('name', $this->category->name);
             })->get();
 

@@ -2,11 +2,11 @@
     <div class="mb-3">
         <input type="search" class="form-control w-25 d-inline me-3" wire:model.live="search" placeholder="Search...">
         @if ($showArchived)
-        <button class="btn btn-primary" wire:click="showActiveCategories">
+        <button class="btn btn-primary" wire:click="showArchivedCategories()">
             Active Categories <i class="bx bx-list-ul me-1"></i>
         </button>
         @else
-        <button type="submit" class="btn btn-secondary" wire:click="showArchivedCategories">
+        <button type="submit" class="btn btn-secondary" wire:click="showArchivedCategories()">
             Archived Categories <i class="bx bx-trash me-1"></i>
         </button>
         @endif
