@@ -55,9 +55,8 @@ class ProductsCreate extends Component
                 'vendor_id' => Auth::guard('vendor')->user()->id,
                 'color_id' => $data['color'],
                 'tag_id' => $data['tag'],
+                'category_id' => $data['category'],
             ]);
-            // attach category to pivot table with product
-            $product->categories()->attach($data['category']);
             // Photo Upload
             $path = 'vendors/' . str_replace(' ', '', Auth::guard('vendor')->user()->name) . '/' . 'products/images/' . str_replace(' ', '', $this->title) . '/';
             foreach ($data['photos'] as $photo) {

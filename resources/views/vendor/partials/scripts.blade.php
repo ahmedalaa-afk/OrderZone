@@ -30,8 +30,8 @@
         });
     });
     document.addEventListener('livewire:init', () => {
-        Livewire.on('editProductModal', (event) => {
-            $('#editModal').modal('toggle');
+        Livewire.on('updateProductModal', (event) => {
+            $('#updateModal').modal('toggle');
         });
     });
     document.addEventListener('livewire:init', () => {

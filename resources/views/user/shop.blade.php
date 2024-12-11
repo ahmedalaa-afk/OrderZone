@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="pi-text">
                                     <div class="catagory-name">{{str_replace('-','
-                                        ',$product->categories->first()->name ?? '')}}</div>
+                                        ',$product->category->name)}}</div>
                                     <a href="#">
                                         <h5>{{$product->name}}</h5>
                                     </a>

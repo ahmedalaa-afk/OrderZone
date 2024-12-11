@@ -1,4 +1,4 @@
-<x-show-modal id="createModal" title="New Product">
+<x-show-modal id="updateModal" title="Update Product">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <form wire:submit.prevent="submit" method="post">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-6 mt-3">
                 <label for="color">Color:</label>
-                <select name="color" class="form-control" id="color" wire:model='color'>
+                <select name="" class="form-control" id="color" wire:model='color'>
                     @foreach ($colors as $color)
                     <option value="{{$color->id }}">{{ $color->name }}</option>
                     @endforeach

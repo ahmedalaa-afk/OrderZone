@@ -9,14 +9,14 @@ use App\Models\Vendor;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'price', 'total', 'slug', 'quantity', 'vendor_id', 'tag_id','color_id'];
+    protected $fillable = ['title', 'description', 'price', 'total', 'slug', 'quantity', 'vendor_id', 'tag_id','color_id','category_id'];
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
     }
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
+        return $this->belongsTo(Category::class);
     }
     public function getCategoryName()
     {
