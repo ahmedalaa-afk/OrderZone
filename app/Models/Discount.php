@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Discount extends Model
 {
     use HasFactory;
-    protected $fillable=['start_at', 'amount', 'end_at','name','discountable_id','discountable_type'];
+    protected $fillable=['start_at', 'amount', 'end_at','product_id'];
 
-    public function discountable(){
-        return $this->morphTo();
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
 }

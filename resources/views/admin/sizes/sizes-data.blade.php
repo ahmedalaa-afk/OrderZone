@@ -26,7 +26,7 @@
                                 </a>
                                 <a class="dropdown-item" href="#"
                                     wire:click.prevent="$dispatch('editSize', { id: {{ $size->id }} })">
-                                    <i class="bx bx-trash me-1"></i> Edit
+                                    <i class="bx bx-edit me-1"></i> Edit
                                 </a>
                             </div>
                         </div>

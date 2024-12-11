@@ -139,8 +139,8 @@
                                     <a href="#">
                                         <h5>{{$product->name}}</h5>
                                     </a>
-                                    @if (isset($product->discounts) && $product->discounts->type == 'product' &&
-                                    $product->discounts->end_at > now())
+                                    @if (isset($product->discount) &&
+                                    $product->discount->end_at > now())
                                     <div class="product-price">
                                         ${{$product->total}}
                                         <span>${{$product->price}}</span>

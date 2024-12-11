@@ -38,9 +38,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot(['quantity']);
     }
-    public function discounts()
+    public function discount()
     {
-        return $this->morphOne(Discount::class, 'discountable');
+        return $this->hasOne(Discount::class);
     }
     public function size()
     {
