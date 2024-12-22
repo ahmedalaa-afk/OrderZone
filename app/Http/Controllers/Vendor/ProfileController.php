@@ -18,53 +18,50 @@ class ProfileController extends Controller
     public function __construct(CartService $cartService)
     {
         $this->cartService = $cartService;
-        $this->middleware(['auth', 'checkUserStatus']);
+        $this->middleware('vendor');
     }
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        return view('vendor.profile.edit', [
-            'user' => $request->user('vendor'),
-            'total' => $this->cartService->getToalCartPrice(),
-        ]);
+        return view('vendor.profile.edit');
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user('vendor')->fill($request->validated());
+    // public function update(ProfileUpdateRequest $request): RedirectResponse
+    // {
+    //     $request->user('vendor')->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+    //     if ($request->user()->isDirty('email')) {
+    //         $request->user()->email_verified_at = null;
+    //     }
 
-        $request->user('vendor')->save();
+    //     $request->user('vendor')->save();
 
-        return Redirect::route('vendor.profile.edit')->with('status', 'profile-updated');
-    }
+    //     return Redirect::route('vendor.profile.edit')->with('status', 'profile-updated');
+    // }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+    // public function destroy(Request $request): RedirectResponse
+    // {
+    //     $request->validateWithBag('userDeletion', [
+    //         'password' => ['required', 'current_password'],
+    //     ]);
 
-        $user = $request->user('vendor');
+    //     $user = $request->user('vendor');
 
-        Auth::logout();
+    //     Auth::logout();
 
-        $user->delete();
+    //     $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
 
-        return Redirect::to('/vendor/login');
-    }
+    //     return Redirect::to('/vendor/login');
+    // }
 }
