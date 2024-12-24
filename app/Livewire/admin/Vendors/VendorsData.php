@@ -32,7 +32,12 @@ class VendorsData extends Component
         }
     }
     public function deleteVendor($id){
-        Vendor::where('id', $id)->delete();
+        $vendor = Vendor::where('id', $id)->first();
+        foreach($vendor->products as $product) {
+            $product->photos()->delete();
+            $product->delete();
+        }
+        $vendor->delete();
         $this->dispatch('refreshVendors');
     }
     public function render()
