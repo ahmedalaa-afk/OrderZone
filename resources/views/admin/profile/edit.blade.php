@@ -3,4 +3,5 @@
 @section('content')
 @livewire('admin.profile.partials.profile-information')
 @livewire('admin.profile.partials.update-password')
+@livewire('admin.profile.partials.delete-account')
 @endsection
