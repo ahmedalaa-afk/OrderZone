@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserManagerController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,15 +33,11 @@ Route::prefix('admin')->controller(AdminController::class)->name('admin.')->grou
     Route::get('/sizes', 'sizes')->name('sizes');
     Route::get('/tags', 'tags')->name('tags');
 
-
     // Authentication Routes
     require __DIR__ . '/adminAuth.php';
+
+    // Profile Routes
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    });
 })->middleware('admin');
-
-
-
-// Route::middleware(['admin'])->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
