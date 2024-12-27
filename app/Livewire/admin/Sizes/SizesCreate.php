@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Sizes;
 
 use App\Models\Size;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class SizesCreate extends Component
@@ -21,6 +22,7 @@ class SizesCreate extends Component
         $this->validate($this->rules());
         Size::create([
             'name' => $this->name,
+            'admin_id' => Auth::guard('admin')->user()->id,
         ]);
         $this->reset(['name']);
         $this->dispatch('createSize');

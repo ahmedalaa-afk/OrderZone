@@ -70,4 +70,10 @@ class Admin extends Authenticatable
             $query->where('name', 'product_manager');
         });
     }
+    public function sizes()
+    {
+        return $this->hasMany(Size::class)->whereHas('admin', function ($query) {
+            $query->where('name', 'product_manager');
+        });
+    }
 }
