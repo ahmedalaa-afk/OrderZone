@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Departments;
 
 use App\Models\Department;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DepartmentsCreate extends Component
@@ -20,6 +21,7 @@ class DepartmentsCreate extends Component
     public function submit()
     {
         $data = $this->validate($this->rules());
+        $data['admin_id'] = Auth::guard('admin')->user()->id;
         Department::create($data);
         $this->reset(['name', 'description']);
         $this->dispatch('createDepartment');
