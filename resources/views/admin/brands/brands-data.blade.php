@@ -1,6 +1,15 @@
 <div>
     <div class="mb-3">
-        <input type="search" class="form-control w-25" wire:model.live="search" id="" placeholder="Search...">
+        <input type="search" class="form-control w-25 d-inline me-3" wire:model.live="search" placeholder="Search...">
+        @if ($showArchived)
+        <button class="btn btn-primary" wire:click="showArchivedBrands">
+            Active Brands <i class="bx bx-list-ul me-1"></i>
+        </button>
+        @else
+        <button type="submit" class="btn btn-secondary" wire:click="showArchivedBrands">
+            Archived Brands <i class="bx bx-trash me-1"></i>
+        </button>
+        @endif
     </div>
     @if (count($brands) > 0)
     <div class="table-responsive text-nowrap">
@@ -28,6 +37,12 @@
                                     wire:click.prevent="$dispatch('editBrand', { id: {{ $brand->id }} })">
                                     <i class="bx bx-edit me-1"></i> Edit
                                 </a>
+                                @if ($brand->deleted_at)
+                                <a class="dropdown-item" href="#"
+                                    wire:click.prevent="$dispatch('restoreBrand', { id: {{ $brand->id }} })">
+                                    <i class="bx bx-refresh me-1"></i> Restore
+                                </a>
+                                @endif
                             </div>
                         </div>
                     </td>
