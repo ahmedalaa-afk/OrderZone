@@ -64,4 +64,10 @@ class Admin extends Authenticatable
             $query->where('name', 'product_manager');
         });
     }
+    public function brands()
+    {
+        return $this->hasMany(Brand::class)->whereHas('admin', function ($query) {
+            $query->where('name', 'product_manager');
+        });
+    }
 }

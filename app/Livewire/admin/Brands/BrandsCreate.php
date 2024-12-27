@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Brands;
 
 use App\Models\Brand;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class BrandsCreate extends Component
@@ -21,6 +22,7 @@ class BrandsCreate extends Component
         $this->validate($this->rules());
         Brand::create([
             'name' => $this->name,
+            'admin_id' => Auth::guard('admin')->user()->id,
         ]);
         $this->reset(['name']);
         $this->dispatch('createBrand');
