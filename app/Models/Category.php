@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory,SoftDeletes;
     
-    protected $fillable = ['name', 'parent_id','department_id'];
+    protected $fillable = ['name', 'parent_id','department_id','admin_id'];
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -31,5 +31,11 @@ class Category extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function admin(){
+        return $this->belongsTo(Admin::class)->whereHas('roles', function ($query) {
+            $query->where('name', 'product_manager');
+        });
     }
 }

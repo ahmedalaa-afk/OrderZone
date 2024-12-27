@@ -14,6 +14,11 @@ class DeleteAccount extends Component
             'current_password' => 'required|min:8',
         ];
     }
+    public function messages(){
+        return [
+            'current_password' => 'The Password field is required.',
+        ];
+    }
     public function submit(){
         $data = $this->validate();
         if (Hash::check($data['current_password'], Auth::guard('admin')->user()->password)) {

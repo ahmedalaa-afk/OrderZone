@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Categories;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CategoriesCreate extends Component
@@ -14,7 +15,7 @@ class CategoriesCreate extends Component
         return [
             'name' => 'required|string|unique:categories,name',
             'parent_id' => 'nullable|exists:categories,id',
-            'department_id' => 'required|exists:departments,id'
+            'department_id' => 'required|exists:departments,id',
         ];
     }
     public function submit(){
@@ -23,6 +24,7 @@ class CategoriesCreate extends Component
             'name' => $this->name,
             'parent_id' => $this->parent_id,
             'department_id' => $this->department_id,
+            'admin_id' => Auth::guard('admin')->user()->id,
         ]);
         $this->reset(['name','parent_id','department_id']);
         $this->dispatch('createCategory');

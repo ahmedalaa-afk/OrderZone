@@ -47,8 +47,15 @@ class Admin extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function announcements(){
+    public function announcements()
+    {
         return $this->hasMany(Announcement::class);
     }
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class)->whereHas('admin', function ($query) {
+            $query->where('name', 'product_manager');
+        });
+    }
 }
