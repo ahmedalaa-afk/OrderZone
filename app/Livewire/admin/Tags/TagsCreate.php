@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Tags;
 
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class TagsCreate extends Component
@@ -21,6 +22,7 @@ class TagsCreate extends Component
         $this->validate($this->rules());
         Tag::create([
             'name' => $this->name,
+            'admin_id' => Auth::guard('admin')->user()->id,
         ]);
         $this->reset(['name']);
         $this->dispatch('createTag');

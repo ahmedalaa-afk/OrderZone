@@ -12,7 +12,7 @@ class ColorsData extends Component
     public function UpdateingSearch(){
         $this->resetPage();
     }
-    public function showArchivedBrands()
+    public function showArchivedColors()
     {
         if ($this->showArchived) {
             $this->showArchived = false;
