@@ -7,14 +7,33 @@ use Livewire\Component;
 
 class ColorsData extends Component
 {
-    public $search;
-    protected $listeners = ['refreshColors' => '$refresh'];
+    public $search,$showArchived = false;
+    protected $listeners = ['refreshColors' => '$refresh','restoreColor'];
     public function UpdateingSearch(){
         $this->resetPage();
     }
+    public function showArchivedBrands()
+    {
+        if ($this->showArchived) {
+            $this->showArchived = false;
+        } else {
+            $this->showArchived = true;
+        }
+    }
+    public function restoreColor($id)
+    {
+        Color::where('id', $id)->restore();
+    }
+    
     public function render()
     {
-        $colors = Color::where('name', 'like', '%' . $this->search . '%')->paginate(10);
+        $query = $this->showArchived
+            ? Color::onlyTrashed()
+            : Color::query();
+
+        $colors = $query
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->paginate(10);
         return view('admin.colors.colors-data', compact('colors'));
     }
 }
