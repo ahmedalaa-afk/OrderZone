@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Color extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','admin_id'];
     use HasFactory,SoftDeletes;
     public function products()
     {
@@ -17,5 +17,10 @@ class Color extends Model
     public function sizes()
     {
         return $this->belongsToMany(Size::class)->withPivot('quantity')->withTimestamps();
+    }
+    public function admin(){
+        return $this->belongsTo(Admin::class)->whereHas('roles', function ($query) {
+            $query->where('name', 'product_manager');
+        });
     }
 }
