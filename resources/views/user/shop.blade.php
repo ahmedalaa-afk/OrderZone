@@ -128,13 +128,7 @@
                                                 <i class="icon_bag_alt"></i>
                                             </a>
                                         </li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon">
-                                            <a href="{{route('user.wishlist.remove',['product_id' => $product->id])}}">
-                                                <i class="fa fa-random">
-                                                </i>
-                                            </a>
-                                        </li>
+                                        <li class="quick-view"><a href="{{route('user.show',['product'=>$product])}}">+ Quick View</a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">

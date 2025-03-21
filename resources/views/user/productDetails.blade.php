@@ -158,8 +158,8 @@
                                 </form>
                             </div>
                             <ul class="pd-tags">
-                                <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
-                                <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
+                                <li><span>CATEGORIES</span> : {{strtoupper($product->category->name)}}</li>
+                                <li><span>TAGS</span>: {{strtoupper($product->tag->name)}}</li>
                             </ul>
                             <div class="pd-share">
                                 <div class="p-code">Sku : 00012</div>
