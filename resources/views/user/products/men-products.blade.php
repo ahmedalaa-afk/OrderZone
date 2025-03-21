@@ -25,14 +25,18 @@
                 </a>
                 <ul>
                     <li class="w-icon active">
-                        <a href="#" wire:click.prevent="$dispatch('addToCart', { slug: '{{ $product->slug }}' })">
+                        <a href="#"
+                            wire:click.prevent="$dispatch('addToCart', { slug: '{{ $product->slug }}' })">
                             <i class="icon_bag_alt"></i>
                         </a>
                     </li>
                     <li class="quick-view"><a href="#">+ Quick View</a></li>
-                    <li class="w-icon"><a href="{{route('user.wishlist.remove',['product_id' => $product->id])}}">
-                            <i class="fa-solid fa-square-minus"></i>
-                        </a></li>
+                    <li class="w-icon">
+                        <a href="{{route('user.wishlist.remove',['product_id' => $product->id])}}">
+                            <i class="fa fa-random">
+                            </i>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="pi-text">
