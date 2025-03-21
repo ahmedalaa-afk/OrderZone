@@ -18,9 +18,11 @@
                 <img src="{{Storage::url($photo->photo)}}" alt="">
                 @endforeach
                 <div class="sale">Sale</div>
-                <div class="icon">
-                    <i class="icon_heart_alt"></i>
-                </div>
+                <a href="{{route('user.wishlist.add',['product_id' => $product->id])}}">
+                    <div class="icon">
+                        <i class="icon_heart_alt"></i>
+                    </div>
+                </a>
                 <ul>
                     <li class="w-icon active">
                         <a href="#" wire:click.prevent="$dispatch('addToCart', { slug: '{{ $product->slug }}' })">

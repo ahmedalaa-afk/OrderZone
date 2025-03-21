@@ -14,13 +14,13 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::where('name', 'user_manager')->get();
+        $role = Role::where('name', 'vendor_manager')->get();
          Admin::create([
-            'name' => 'user_manager',
-            'email' => 'user_manager@gmail.com',
+            'name' => 'vendor_manager',
+            'email' => 'vendor_manager@gmail.com',
             'password' => bcrypt('123456789')
         ]);
-        $admin = Admin::where('name', '=', 'user_manager')->first();
+        $admin = Admin::where('name', '=', 'vendor_manager')->first();
         $admin->assignRole($role);
     }
 }

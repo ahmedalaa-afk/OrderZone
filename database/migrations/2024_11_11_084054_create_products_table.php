@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('total', 8, 2);
             $table->integer('quantity')->unsigned();
             $table->enum('status',['accepted','not_accepted'])->default('not_accepted');
-            $table->foreignId('vendor_id')->constrained('vendors');
-            $table->foreignId('color_id')->constrained('colors');
+            $table->foreignId('vendor_id')->constrained('vendors')->onDelete('cascade');
+            $table->foreignId('color_id')->constrained('colors')->onDelete('cascade');
             $table->foreignId('tag_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('size_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');

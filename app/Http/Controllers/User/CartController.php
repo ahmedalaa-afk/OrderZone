@@ -57,7 +57,6 @@ class CartController extends Controller
     public function removeFromCart($slug)
     {
         $user = Auth::user();
-
         $cart = $user->cart;
 
         if (!$cart) {
@@ -69,15 +68,25 @@ class CartController extends Controller
         if (!$product) {
             return back()->with('error', 'Product not found.');
         }
-        $existingProduct = $cart->products()
-            ->where('product_id', $product->id)
-            ->first();
+
+        $existingProduct = $cart->products()->where('product_id', $product->id)->first();
 
         if ($existingProduct) {
-            $cart->products()->updateExistingPivot($product->id, [
-                'quantity' => $existingProduct->pivot->quantity - 1
-            ]);
-            return to_route('user.cart.index')->with('success', 'Product quantity updated in your cart.');
+            $newQuantity = $existingProduct->pivot->quantity - 1;
+
+            if ($newQuantity > 0) {
+                // Update quantity if it's greater than zero
+                $cart->products()->updateExistingPivot($product->id, [
+                    'quantity' => $newQuantity
+                ]);
+                return to_route('user.cart.index')->with('success', 'Product quantity updated in your cart.');
+            } else {
+                // Remove product from cart if quantity reaches zero
+                $cart->products()->detach($product->id);
+                return to_route('user.cart.index')->with('success', 'Product removed from your cart.');
+            }
         }
+
+        return back()->with('error', 'Product not found in your cart.');
     }
 }

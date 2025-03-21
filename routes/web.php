@@ -37,6 +37,7 @@ Route::prefix('user')->controller(HomeController::class)->name('user.')->group(f
             Route::get('/categories/{category}',  'getCategoryProducts')->name('getCategoryProducts');
             Route::get('/department/{department}',  'getdepartmentProducts')->name('getdepartmentProducts');
             Route::get('/Tag/{tag}',  'getTagProducts')->name('getTagProducts');
+            Route::get('/products/show/{product}', 'show')->name('show');;
         });
         Route::prefix('contact')->controller(ContactController::class)->group(function(){
             Route::post('/store', 'store')->name('contact.store');

@@ -44,6 +44,8 @@ class RegisteredUserController extends Controller
         ]);
 
         $user->assignRole('user');
+        $user->cart()->create();
+        $user->wishlist()->create();
         event(new Registered($user));
 
         Auth::login($user);

@@ -77,8 +77,8 @@
                         <div class="cart-item-remove ms-4">
                             <form action="{{ route('user.cart.remove', $product->id) }}" method="POST">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                                @method('POST')
+                                {{-- <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button> --}}
                             </form>
                         </div>
                     </div>

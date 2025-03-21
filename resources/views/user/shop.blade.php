@@ -90,8 +90,8 @@
                         <div class="fw-size-choose">
                             @foreach ($sizes as $size)
                             <div class="sc-item">
-                                <input type="radio" id="{{$size->size}}-size" name="size" value="{{$size->size}}">
-                                <label for="{{$size->size}}-size">{{$size->size}}</label>
+                                <input type="radio" id="{{$size->name}}-size" name="size" value="{{$size->name}}">
+                                <label for="{{$size->name}}-size">{{$size->name}}</label>
                             </div>
                             @endforeach
                         </div>
@@ -116,9 +116,11 @@
                                 <div class="pi-pic">
                                     <img src="{{Storage::url($product->photos->first()->photo)}}" alt="">
                                     <div class="sale pp-sale">Sale</div>
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
+                                    <a href="{{route('user.wishlist.add',['product_id' => $product->id])}}">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                    </a>
                                     <ul>
                                         <li class="w-icon active">
                                             <form action="{{route('user.cart.add',['slug' => $product->slug])}}"
@@ -129,7 +131,8 @@
                                                 </button>
                                             </form>
                                         </li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                        <li class="quick-view"><a href="{{route('user.show',['product'=>$product])}}">+
+                                                Quick View</a></li>
                                         <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                     </ul>
                                 </div>

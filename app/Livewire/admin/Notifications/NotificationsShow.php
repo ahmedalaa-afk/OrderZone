@@ -37,6 +37,7 @@ class NotificationsShow extends Component
         if ($vendor) {
 
             $vendor->accepted_at = now();
+            $vendor->status = 'approved';
             $vendor->save();
 
             $this->reset('notification');

@@ -50,7 +50,15 @@
                                         </div>
                                     </a>
                                     <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                        <li class="w-icon active">
+                                            <form action="{{route('user.cart.add',['slug' => $product->slug])}}"
+                                                method="POST">
+                                                @csrf
+                                                <button type="submit" class="p-2" style="background-color: #DBB624">
+                                                    <i class="icon_bag_alt"></i>
+                                                </button>
+                                            </form>
+                                        </li>
                                         <li class="quick-view"><a href="#">+ Quick View</a></li>
                                         <li class="w-icon"><a
                                                 href="{{route('user.wishlist.remove',['product_id' => $product->id])}}"><i
@@ -59,7 +67,7 @@
                                 </div>
                                 <div class="pi-text">
                                     <div class="catagory-name">{{str_replace('-','
-                                        ',$product->categories->first()->name)}}</div>
+                                        ',$product->category->first()->name)}}</div>
                                     <a href="#">
                                         <h5>{{$product->name}}</h5>
                                     </a>

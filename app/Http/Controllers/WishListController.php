@@ -19,7 +19,8 @@ class WishlistController extends Controller
     }
     public function index()
     {
-        $products = Auth::user()->wishlist->products;
+        $user = Auth::user();
+        $products = $user->wishlist->products ?? $user->wishlist()->create();
         $total = $this->cartService->getToalCartPrice();
 
         return view('user.wishlist', compact('products', 'total'));

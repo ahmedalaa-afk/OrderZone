@@ -58,7 +58,7 @@ class ProductController extends Controller
 
 
 
-        $products = $query->where('status','accepted')->get();
+        $products = $query->where('status', 'accepted')->get();
 
         $total = $this->cartService->getToalCartPrice();
 
@@ -76,13 +76,13 @@ class ProductController extends Controller
     {
         if ($key == 'all') {
 
-            $products = Product::where('status','accepted')->get();
+            $products = Product::where('status', 'accepted')->get();
         } else {
 
             $categories = Category::where('name', 'like', $key . '%')->get();
 
-            $products = Product::whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('name', $categories->pluck('name')->toArray())->where('status','accepted');
+            $products = Product::whereHas('category', function ($query) use ($categories) {
+                $query->whereIn('name', $categories->pluck('name')->toArray())->where('status', 'accepted');
             })->get();
         }
 
@@ -95,7 +95,7 @@ class ProductController extends Controller
     {
         if ($key == 'all') {
 
-            $products = Product::where('status','accepted');
+            $products = Product::where('status', 'accepted');
         } else {
 
             $categories = Category::whereHas('department', function ($query) use ($key) {
@@ -103,7 +103,7 @@ class ProductController extends Controller
             })->get();
 
             $products = Product::whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('name', $categories->pluck('name')->toArray())->where('status','accepted');
+                $query->whereIn('name', $categories->pluck('name')->toArray())->where('status', 'accepted');
             })->get();
         }
         $total = $this->cartService->getToalCartPrice();
@@ -114,15 +114,25 @@ class ProductController extends Controller
     public function getTagProducts($key)
     {
         $products = Product::whereHas('tag', function ($query) use ($key) {
-            $query->where('tag', $key)->where('status','accepted');
+            $query->where('name', $key)->where('status', 'accepted');
         })->get();
         $total = $this->cartService->getToalCartPrice();
 
         return view('user.shop', compact('total', 'products'));
     }
 
-
-
+    /**
+     * Display the specified resource.
+     */
+    public function show(Product $product)
+    {
+        $product = Product::where('slug', $product->slug)->first();
+        $relatedProducts = Product::whereHas('tag', function ($query) use ($product) {
+            $query->whereIn('tags.id', $product->tag->pluck('id'));
+        })->where('id', '!=', $product->id)->get();
+        $total = $this->cartService->getToalCartPrice();
+        return view('user.productDetails', compact('total', 'relatedProducts','product'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -139,13 +149,6 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
